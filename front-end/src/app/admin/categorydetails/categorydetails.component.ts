@@ -16,7 +16,7 @@ export class CategorydetailsComponent implements OnInit {
 
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
-      this.isViewMode = params['view'] === 'view'; // If query param 'view' is 'view', disable button
+      this.isViewMode = params['view'] === 'view'; 
     });
   }
 }
