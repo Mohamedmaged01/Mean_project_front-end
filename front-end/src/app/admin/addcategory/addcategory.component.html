@@ -1,0 +1,46 @@
+<app-sidebar></app-sidebar>
+<div class="container mt-5">
+    <h1>Add Category</h1>
+    <div class="d-flex justify-content-between align-items-center">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#" class="text-dark">Home</a></li>
+                <li class="breadcrumb-item"> <a routerLink="/category" class="text-dark">Category</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Add Category</li>
+            </ol>
+
+        </nav>
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <div>
+                <button class="btn btn-light border" [routerLink]="'/category'">Cancel</button>
+                <button class="btn btn-primary ms-3">+ Add Category</button>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-5">
+        <div class="col-lg-4 col-md-2 col-ms-12">
+            <div class="card p-4">
+                <h5>Thumbnail</h5>
+                <p class="text-muted">Photo</p>
+                <div class="border rounded p-4 text-center" style="border-style: dashed;">
+                    <i class="fa fa-image fa-2x text-secondary"></i>
+                    <p>Drag and drop image here, or click add image</p>
+                    <button class="btn btn-light border text-info">Add Image</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-8 col-md-10 col-ms-12">
+            <div class="card p-4">
+                <h5>General Information</h5>
+                <div class="mb-3">
+                    <label class="form-label">Category Name</label>
+                    <input type="text" class="form-control" placeholder="Type category name here...">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Description</label>
+                    <textarea class="form-control" rows="3" placeholder="Type category description here..."></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
