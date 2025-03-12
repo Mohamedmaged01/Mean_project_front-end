@@ -1,0 +1,44 @@
+<app-sidebar></app-sidebar>
+<div class="container mt-5">
+    <h1>Customers</h1>
+    <div class="d-flex justify-content-between align-items-center">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a [routerLink]="'/'" class="text-dark">Home</a></li>
+                <li class="breadcrumb-item"><a [routerLink]="'/customer'">Customers List </a></li>
+                <li class="breadcrumb-item active" aria-current="page">update Customer</li>
+            </ol>
+
+        </nav>
+        <button class="btn btn-info" [routerLink]="'/addcategory'"> + Add Customer</button>
+    </div>
+    <div class="update-container">
+        <h2>Update Customer Details</h2>
+        <form class="update-form">
+            <div class="form-group">
+                <label for="name"><i class="fas fa-user"></i> Full Name</label>
+                <input type="text" id="name" placeholder="Enter full name">
+            </div>
+
+            <div class="form-group">
+                <label for="email"><i class="fas fa-envelope"></i> Email</label>
+                <input type="email" id="email" placeholder="Enter email">
+            </div>
+
+            <div class="form-group">
+                <label for="phone"><i class="fas fa-phone"></i> Phone Number</label>
+                <input type="text" id="phone" placeholder="Enter phone number">
+            </div>
+
+            <div class="form-group">
+                <label for="address"><i class="fas fa-map-marker-alt"></i> Address</label>
+                <textarea id="address" rows="3" placeholder="Enter address"></textarea>
+            </div>
+
+            <div class="button-group">
+                <button type="submit" class="update-btn">Update</button>
+                <button type="reset" class="cancel-btn">Cancel</button>
+            </div>
+        </form>
+    </div>
+</div>

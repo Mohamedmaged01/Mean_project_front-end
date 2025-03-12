@@ -1,1 +1,81 @@
-<p>customer works!</p>
+<app-sidebar></app-sidebar>
+<div class="container mt-5">
+    <h1>Customers</h1>
+    <div class="d-flex justify-content-between align-items-center">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#" class="text-dark">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Customers</li>
+            </ol>
+
+        </nav>
+        <button class="btn btn-info" [routerLink]="'/addcategory'"> + Add Customer</button>
+    </div>
+    <nav class="navbar bg-body-tertiary">
+        <div class="container-fluid">
+            <form class="d-flex" role="search">
+                <input class="form-control me-2" type="search" placeholder="🔍 Search" aria-label="Search">
+                <button class="btn btn-outline-info" type="submit">Search</button>
+            </form>
+        </div>
+    </nav>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Customer image</th>
+                <th scope="col">Customer Name</th>
+                <th scope="col">Phone</th>
+                <th scope="col">Orders</th>
+                <th scope="col">Status</th>
+                <th scope="col">Created</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- @for (item of categories; track $index) { -->
+            <tr>
+                <th scope="row">1</th>
+                <td>
+                    <img src="" alt=" food " width="50 " height="50 "></td>
+                <td>Mostafa</td>
+                <td>01060495817</td>
+                <td>5</td>
+                <td>Active</td>
+                <td>20/1/2025</td>
+                <td>
+                    <button class="btn btn-sm btn-primary" [routerLink]="'/customerdetails'">
+                        <i class="fa fa-eye"></i>
+                      </button>
+
+                    <button class="btn btn-sm btn-warning ms-2" [routerLink]="'/updatecustomer'">
+                        <i class="fa fa-pen"></i>
+                      </button>
+
+                    <button class="btn btn-sm btn-danger ms-2 "><i class="fa fa-trash "></i></button>
+                </td>
+            </tr>
+            <!-- } -->
+            <tr>
+                <th scope="row">1</th>
+                <td>
+                    <img src="" alt=" food " width="50 " height="50 "></td>
+                <td>Mostafa</td>
+                <td>01060495817</td>
+                <td>5</td>
+                <td>Active</td>
+                <td>20/1/2025</td>
+                <td>
+                    <button class="btn btn-sm btn-primary" [routerLink]="'/customerdetails'">
+                        <i class="fa fa-eye"></i>
+                      </button>
+
+                    <button class="btn btn-sm btn-warning ms-2" [routerLink]="'/updatecustomer'">
+                        <i class="fa fa-pen"></i>
+                      </button>
+
+                    <button class="btn btn-sm btn-danger ms-2 "><i class="fa fa-trash "></i></button>
+                </td>
+            </tr>
+    </table>
+</div>

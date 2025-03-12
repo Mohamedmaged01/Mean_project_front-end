@@ -4,12 +4,14 @@ import { CategoryComponent } from './admin/category/category.component';
 import { AddcategoryComponent } from './admin/addcategory/addcategory.component';
 import { CategorydetailsComponent } from './admin/categorydetails/categorydetails.component';
 import { CustomerComponent } from './admin/customer/customer.component';
+import { CustomerdetailsComponent } from './admin/customerdetails/customerdetails.component';
+import { UpdatecustomerComponent } from './admin/updatecustomer/updatecustomer.component';
 
 export const routes: Routes = [
     {
         path: '',
         component:SidebarComponent,
-        title:'side bar'
+        title:'Home page'
     },
     {
         path: 'category',
@@ -30,5 +32,15 @@ export const routes: Routes = [
         path:'customer',
         component:CustomerComponent,
         title:'Customer'
+    },
+    {
+        path:'customerdetails',
+        component:CustomerdetailsComponent,
+        title:'Customer Details'
+    },
+    {
+        path:'updatecustomer',
+        component:UpdatecustomerComponent,
+        title:'Update Customer'
     }
 ];

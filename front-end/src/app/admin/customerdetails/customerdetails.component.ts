@@ -3,11 +3,11 @@ import { SidebarComponent } from '../sidebar/sidebar.component';
 import { RouterLink } from '@angular/router';
 
 @Component({
-  selector: 'app-customer',
+  selector: 'app-customerdetails',
   imports: [SidebarComponent,RouterLink],
-  templateUrl: './customer.component.html',
-  styleUrl: './customer.component.css'
+  templateUrl: './customerdetails.component.html',
+  styleUrl: './customerdetails.component.css'
 })
-export class CustomerComponent {
+export class CustomerdetailsComponent {
 
 }
