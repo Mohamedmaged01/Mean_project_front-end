@@ -3,6 +3,7 @@ import { SidebarComponent } from './admin/sidebar/sidebar.component';
 import { CategoryComponent } from './admin/category/category.component';
 import { AddcategoryComponent } from './admin/addcategory/addcategory.component';
 import { CategorydetailsComponent } from './admin/categorydetails/categorydetails.component';
+import { CustomerComponent } from './admin/customer/customer.component';
 
 export const routes: Routes = [
     {
@@ -24,5 +25,10 @@ export const routes: Routes = [
         path:'categorydetails',
         component:CategorydetailsComponent,
         title:'Category Details' 
+    },
+    {
+        path:'customer',
+        component:CustomerComponent,
+        title:'Customer'
     }
 ];
