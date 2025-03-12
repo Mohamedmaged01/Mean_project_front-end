@@ -1,10 +1,11 @@
+<app-navbar></app-navbar>
 <div class="bg-white text-dark">
     <div class="d-flex flex-row pt-2 links">
         <nav class="">
             <div class="container-fluid">
                 <button class="btn btn-dark" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu">
-                        <i class="fa-solid fa-bars"></i>
-                    </button>
+          <i class="fa-solid fa-bars"></i>
+        </button>
             </div>
         </nav>
 
@@ -15,39 +16,47 @@
             </div>
             <div class="offcanvas-body">
                 <ul class="list-group list-group-flush">
-                    <li class="list-group bg-info text-white w-50" style="height: 40px;">
+                    <li class="list-group bg-info text-white w-50" style="height: 40px">
                         <span class="text-dark text-center mt-2">Admin Dashboard</span>
                     </li>
                     <li class="list-group">
                         <div class="btn-group dropend mt-3 w-50">
                             <button class="btn btn-outline-info dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="fa-solid fa-bag-shopping mx-2"></i>
-                                Products
-                            </button>
+                <i class="fa-solid fa-bag-shopping mx-2"></i>
+                Products
+              </button>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="#">Product</a></li>
-                                <li><a class="dropdown-item" routerLink="/category">Category</a></li>
+                                <li><a class="dropdown-item" [routerLink]="'/category'">Category</a></li>
                             </ul>
                         </div>
                     </li>
                     <li class="list-group mt-3">
-
-                        <a href="#"><span> <i class="fa-solid fa-cart-shopping mx-2"></i> Orders  <span class="badge text-bg-danger ms-5">4</span></span></a>
-
-                    </li>
-                    <li class="list-group mt-3">
-                        <a routerLink="/customer"><span><i class="fa-solid fa-users mx-2"></i>Customers</span></a>
-
-                    </li>
-                    <li class="list-group mt-3">
-                        <a href="#"><span><i class="fa-solid fa-store mx-2"></i> Sellers</span></a>
-
-                    </li>
-                    <li class="list-group mt-3">
-                        <a href="#"><span><i class="fa-solid fa-chart-line mx-2"></i> Analytics</span></a>
-                    </li>
-                </ul>
-            </div>
-        </div>
+                        <a href="#"><span>
+                <i class="fa-solid fa-cart-shopping mx-2"></i> Orders
+                <span class="badge text-bg-danger ms-5">4</span></span
+              ></a
+            >
+          </li>
+          <li class="list-group mt-3">
+            <a [routerLink]="'/customer'"
+              ><span><i class="fa-solid fa-users mx-2"></i>Customers</span></a
+            >
+          </li>
+          <li class="list-group mt-3">
+            <a href="#"
+              ><span><i class="fa-solid fa-store mx-2"></i> Sellers</span></a
+            >
+          </li>
+          <li class="list-group mt-3">
+            <a href="#"
+              ><span
+                ><i class="fa-solid fa-chart-line mx-2"></i> Analytics</span
+              ></a
+            >
+          </li>
+        </ul>
+      </div>
     </div>
+  </div>
 </div>
