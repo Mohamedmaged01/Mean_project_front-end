@@ -1,0 +1,19 @@
+<div class="container-fluid">
+    <h2 class="shop-title">Wish List</h2>
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 product-container">
+      @for (product of products; track product.id) {
+        <div class="col">
+          <app-product-card [productitem]="product"></app-product-card>
+        </div>
+      }
+    </div>
+    <div class="pagination-controls">
+      <button (click)="prevPage()" [disabled]="currentPage === 1">
+        ⬅ Previous
+      </button>
+      <span>Page {{ currentPage }} of {{ totalPages }}</span>
+      <button (click)="nextPage()" [disabled]="currentPage === totalPages">
+        Next ➡
+      </button>
+    </div>
+</div>
