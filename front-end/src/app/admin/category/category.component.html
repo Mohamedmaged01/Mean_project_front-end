@@ -31,13 +31,14 @@
             </tr>
         </thead>
         <tbody>
-            <!-- @for (item of categories; track $index) { -->
+            <div *ngIf="isLoading" class="loading-spinner">Loading...</div>
+            @for (item of categories; track $index){
             <tr>
                 <th scope="row">1</th>
                 <td>
                     <img src="" alt=" food " width="50 " height="50 "></td>
-                <td>Category 1</td>
-                <td>Category 1 Description</td>
+                <td>{{item.name}}</td>
+                <td>{{item.description}}</td>
                 <td>Active</td>
                 <td>
                     <button class="btn btn-sm btn-primary" [routerLink]="'/categorydetails'" [queryParams]="{ view: 'view' }">
@@ -51,6 +52,6 @@
                     <button class="btn btn-sm btn-danger ms-2 "><i class="fa fa-trash "></i></button>
                 </td>
             </tr>
-            <!-- } -->
+            }
     </table>
 </div>

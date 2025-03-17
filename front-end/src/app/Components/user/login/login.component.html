@@ -1,62 +1,40 @@
 <!-- src/app/login.component.html -->
 <div class="body">
-  <div class="container">
-    <div class="login-box">
-      <form class="form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-        <div class="logo"></div>
-        <span class="header">Welcome Back!</span>
+    <div class="container">
+        <div class="login-box">
+            <form class="form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                <div class="logo"></div>
+                <span class="header">Welcome Back!</span> @if (successMessage) {
+                <div class="success-message">{{ successMessage }}</div>
+                } @if (errorMessage) {
+                <div class="error-message">{{ errorMessage }}</div>
+                }
 
-        @if (successMessage) {
-          <div class="success-message">{{ successMessage }}</div>
-        }
-        @if (errorMessage) {
-          <div class="error-message">{{ errorMessage }}</div>
-        }
+                <input type="email" placeholder="Email" class="input" formControlName="email" [class.is-invalid]="f['email'].touched && f['email'].errors" required /> @if (f['email'].touched && f['email'].errors) {
+                <div class="invalid-feedback">
+                    @if (f['email'].errors['required']) {
+                    <div>Email is required</div>
+                    } @if (f['email'].errors['email']) {
+                    <div>Please enter a valid email</div>
+                    }
+                </div>
+                }
 
-        <input 
-          type="email" 
-          placeholder="Email" 
-          class="input" 
-          formControlName="email"
-          [class.is-invalid]="f['email'].touched && f['email'].errors" 
-          required />
-        @if (f['email'].touched && f['email'].errors) {
-          <div class="invalid-feedback">
-            @if (f['email'].errors['required']) {
-              <div>Email is required</div>
-            }
-            @if (f['email'].errors['email']) {
-              <div>Please enter a valid email</div>
-            }
-          </div>
-        }
+                <input type="password" placeholder="Password" class="input" formControlName="password" [class.is-invalid]="f['password'].touched && f['password'].errors" required /> @if (f['password'].touched && f['password'].errors) {
+                <div class="invalid-feedback">
+                    @if (f['password'].errors['required']) {
+                    <div>Password is required</div>
+                    } @if (f['password'].errors['minlength']) {
+                    <div>Minimum length is 8 characters</div>
+                    }
+                </div>
+                }
 
-        <input 
-          type="password" 
-          placeholder="Password" 
-          class="input" 
-          formControlName="password"
-          [class.is-invalid]="f['password'].touched && f['password'].errors" 
-          required />
-        @if (f['password'].touched && f['password'].errors) {
-          <div class="invalid-feedback">
-            @if (f['password'].errors['required']) {
-              <div>Password is required</div>
-            }
-            @if (f['password'].errors['minlength']) {
-              <div>Minimum length is 8 characters</div>
-            }
-          </div>
-        }
-
-        <button 
-          type="submit" 
-          class="button sign-in"
-          [disabled]="loginForm.invalid || isSubmitting">
+                <button type="submit" class="button sign-in" [routerLink]="'/category'" [disabled]="loginForm.invalid || isSubmitting">
           {{ isSubmitting ? 'Signing In...' : 'Sign In' }}
         </button>
 
-        <button type="button" class="button google-sign-in" (click)="onGoogleLogin()">
+                <button type="button" class="button google-sign-in" (click)="onGoogleLogin()">
           <svg
             class="icon"
             viewBox="-3 0 262 262"
@@ -82,15 +60,15 @@
           </svg>
         <span class="span two">Sign in with Google</span>
         </button>
-  
-        <p class="footer">
-          Don't have an account?
-          <a routerLink="/signup" class="link">Sign up, it's free!</a>
-          <!-- <a routerLink="/signup" class="auth-link">Don't have an account?</a>
+
+                <p class="footer">
+                    Don't have an account?
+                    <a routerLink="/signup" class="link">Sign up, it's free!</a>
+                    <!-- <a routerLink="/signup" class="auth-link">Don't have an account?</a>
          -->
-         
-        </p>
-      </form>
+
+                </p>
+            </form>
+        </div>
     </div>
-  </div>
 </div>

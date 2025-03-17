@@ -4,6 +4,7 @@ import {LoginService} from '../../../userservices/login.service'
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 @Component({
   standalone: true,
   selector: 'app-login',
@@ -20,7 +21,8 @@ export class LoginComponent implements OnInit{
 
   constructor(
     private fb: FormBuilder,
-    private loginService: LoginService
+    private loginService: LoginService,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -52,7 +54,10 @@ export class LoginComponent implements OnInit{
           this.successMessage = 'Login successful!';
           this.loginForm.reset();
           console.log('Login response:', response);
-          //add route to home page
+          localStorage.setItem('token', response.token);
+        
+          this.router.navigate(['/category']);
+
         },
         error: (error) => {
           this.isSubmitting = false;

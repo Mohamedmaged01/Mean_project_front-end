@@ -1,117 +1,70 @@
 <div class="body">
-  <div class="container">
-    <div class="login-box">
-      <form class="form" [formGroup]="signupForm" (ngSubmit)="onSubmit()">
-        <div class="logo"></div>
-        <span class="header">Create Account</span>
-        @if (successMessage) {
-          <div class="success-message">{{ successMessage }}</div>
-        }
-        @if (errorMessage) {
-          <div class="error-message">{{ errorMessage }}</div>
-        }
-        <input 
-          type="text" 
-          placeholder="Full Name" 
-          class="input" 
-          formControlName="name"
-          [class.is-invalid]="f['name'].touched && f['name'].errors" 
-          required />
-        @if (f['name'].touched && f['name'].errors) {
-          <div class="invalid-feedback">
-            @if (f['name'].errors['required']) {
-              <div>Full name is required</div>
-            }
-            @if (f['name'].errors['minlength']) {
-              <div>Minimum length is 2 characters</div>
-            }
-            @if (f['name'].errors['pattern']) {
-              <div>Only letters are allowed</div>
-            }
-          </div>
-        }
-        <input 
-          type="email" 
-          placeholder="Email" 
-          class="input" 
-          formControlName="email"
-          [class.is-invalid]="f['email'].touched && f['email'].errors" 
-          required />
-        @if (f['email'].touched && f['email'].errors) {
-          <div class="invalid-feedback">
-            @if (f['email'].errors['required']) {
-              <div>Email is required</div>
-            }
-            @if (f['email'].errors['email']) {
-              <div>Please enter a valid email</div>
-            }
-          </div>
-        }
-        <input 
-          type="tel" 
-          placeholder="Phone Number" 
-          class="input" 
-          formControlName="phone"
-          [class.is-invalid]="f['phone'].touched && f['phone'].errors" 
-          required />
-        @if (f['phone'].touched && f['phone'].errors) {
-          <div class="invalid-feedback">
-            @if (f['phone'].errors['required']) {
-              <div>Phone number is required</div>
-            }
-            @if (f['phone'].errors['pattern']) {
-              <div>Please enter a valid 10-digit phone number</div>
-            }
-          </div>
-        }
-        <input 
-          type="text" 
-          placeholder="Address" 
-          class="input" 
-          formControlName="address"
-          [class.is-invalid]="f['address'].touched && f['address'].errors" 
-          required />
-        @if (f['address'].touched && f['address'].errors) {
-          <div class="invalid-feedback">
-            @if (f['address'].errors['required']) {
-              <div>Address is required</div>
-            }
-            @if (f['address'].errors['minlength']) {
-              <div>Minimum length is 5 characters</div>
-            }
-          </div>
-        }
-        <input 
-          type="password" 
-          placeholder="Password" 
-          class="input" 
-          formControlName="password"
-          [class.is-invalid]="f['password'].touched && f['password'].errors" 
-          required />
-        @if (f['password'].touched && f['password'].errors) {
-          <div class="invalid-feedback">
-            @if (f['password'].errors['required']) {
-              <div>Password is required</div>
-            }
-            @if (f['password'].errors['minlength']) {
-              <div>Minimum length is 8 characters</div>
-            }
-            @if (f['password'].errors['pattern']) {
-              <div>Must contain uppercase, lowercase, and number</div>
-            }
-          </div>
-        }
-        <button 
-          type="submit" 
-          class="button sign-in"
-          [disabled]="signupForm.invalid || isSubmitting">
+    <div class="container">
+        <div class="login-box">
+            <form class="form" [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+                <div class="logo"></div>
+                <span class="header">Create Account</span> @if (successMessage) {
+                <div class="success-message">{{ successMessage }}</div>
+                } @if (errorMessage) {
+                <div class="error-message">{{ errorMessage }}</div>
+                }
+                <input type="text" placeholder="Full Name" class="input" formControlName="name" [class.is-invalid]="f['name'].touched && f['name'].errors" required /> @if (f['name'].touched && f['name'].errors) {
+                <div class="invalid-feedback">
+                    @if (f['name'].errors['required']) {
+                    <div>Full name is required</div>
+                    } @if (f['name'].errors['minlength']) {
+                    <div>Minimum length is 2 characters</div>
+                    } @if (f['name'].errors['pattern']) {
+                    <div>Only letters are allowed</div>
+                    }
+                </div>
+                }
+                <input type="email" placeholder="Email" class="input" formControlName="email" [class.is-invalid]="f['email'].touched && f['email'].errors" required /> @if (f['email'].touched && f['email'].errors) {
+                <div class="invalid-feedback">
+                    @if (f['email'].errors['required']) {
+                    <div>Email is required</div>
+                    } @if (f['email'].errors['email']) {
+                    <div>Please enter a valid email</div>
+                    }
+                </div>
+                }
+                <input type="tel" placeholder="Phone Number" class="input" formControlName="phone" [class.is-invalid]="f['phone'].touched && f['phone'].errors" required /> @if (f['phone'].touched && f['phone'].errors) {
+                <div class="invalid-feedback">
+                    @if (f['phone'].errors['required']) {
+                    <div>Phone number is required</div>
+                    } @if (f['phone'].errors['pattern']) {
+                    <div>Please enter a valid 10-digit phone number</div>
+                    }
+                </div>
+                }
+                <input type="text" placeholder="Address" class="input" formControlName="address" [class.is-invalid]="f['address'].touched && f['address'].errors" required /> @if (f['address'].touched && f['address'].errors) {
+                <div class="invalid-feedback">
+                    @if (f['address'].errors['required']) {
+                    <div>Address is required</div>
+                    } @if (f['address'].errors['minlength']) {
+                    <div>Minimum length is 5 characters</div>
+                    }
+                </div>
+                }
+                <input type="password" placeholder="Password" class="input" formControlName="password" [class.is-invalid]="f['password'].touched && f['password'].errors" required /> @if (f['password'].touched && f['password'].errors) {
+                <div class="invalid-feedback">
+                    @if (f['password'].errors['required']) {
+                    <div>Password is required</div>
+                    } @if (f['password'].errors['minlength']) {
+                    <div>Minimum length is 8 characters</div>
+                    } @if (f['password'].errors['pattern']) {
+                    <div>Must contain uppercase, lowercase, and number</div>
+                    }
+                </div>
+                }
+                <button type="submit" class="button sign-in" [disabled]="signupForm.invalid || isSubmitting">
           {{ isSubmitting ? 'Signing Up...' : 'Sign Up' }}
         </button>
-        <p class="footer">
-          Already have an account?
-          <a routerLink="/login" class="link">Sign in</a>
-        </p>
-      </form>
+                <p class="footer">
+                    Already have an account?
+                    <a routerLink="/login" class="link">Sign in</a>
+                </p>
+            </form>
+        </div>
     </div>
-  </div>
 </div>
