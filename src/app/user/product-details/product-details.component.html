@@ -1,0 +1,123 @@
+<div
+  *ngIf="product; else loadingTemplate"
+  class="container my-5 d-flex justify-content-center align-items-center"
+  style="min-height: 40vh"
+>
+  <div class="card shadow-lg border-0" style="max-width: 1200px; width: 100%">
+    <div class="row g-0 h-100">
+      <div class="col-md-6 h-100">
+        <img
+          [src]="product.image"
+          alt="Product Image"
+          class="img-fluid rounded-start h-100"
+          style="object-fit: cover; width: 100%"
+        />
+      </div>
+
+      <div class="col-md-6 d-flex flex-column justify-content-center p-4 h-100">
+        <div class="card-body">
+          <h1 class="card-title fw-bold text-dark text-center mb-3">
+            {{ product.name }}
+          </h1>
+
+          <p class="text-muted text-center">{{ product.description }}</p>
+
+          <p class="d-flex align-items-center">
+            <strong class="me-3">Category:</strong>
+            <span class="text-muted">{{ product.category }}</span>
+          </p>
+
+          <div class="d-flex align-items-center gap-2 flex-wrap">
+            <p class="mb-0">
+              <strong class="me-3">Quantity:</strong>
+            </p>
+            <input
+              type="number"
+              [(ngModel)]="quantity"
+              min="1"
+              class="form-control w-25 d-inline"/>
+            <button class="btn btn-danger w-auto" (click)="addToCart()">
+              Add To Cart
+            </button>
+          </div>
+
+          <p class="d-flex align-items-center mt-3">
+            <strong class="me-3">Discount Price:</strong>
+            <span class="fw-bold text-success">
+              {{ product.discountPrice | currency }}
+            </span>
+          </p>
+
+          <p class="d-flex align-items-center">
+            <strong class="me-3">Price:</strong>
+            <span class="fw-bold text-danger">
+              <del>{{ product.price | currency }}</del>
+            </span>
+          </p>
+
+          <p class="d-flex align-items-center">
+            <strong class="me-3">Stock:</strong>
+            <span class="text-muted">{{ product.stock }}</span>
+          </p>
+
+          <p class="d-flex align-items-center">
+            <strong class="me-3">Color:</strong>
+            <span
+              class="rounded-circle"
+              [ngStyle]="{ 'background-color': product.variations.color }"
+              style="
+                height: 30px;
+                width: 30px;
+                display: inline-block;
+                border: 1px solid #ccc;
+              "
+            ></span>
+          </p>
+
+          <p class="d-flex align-items-center">
+            <strong class="me-3">RAM:</strong>
+            <span class="text-muted">{{ product.variations.RAM }}</span>
+          </p>
+
+          <p class="d-flex align-items-center">
+            <strong class="me-3">Seller:</strong>
+            <span class="text-muted">{{ product.seller }}</span>
+          </p>
+
+          <p class="d-flex align-items-center">
+            <strong class="me-3">Rating:</strong>
+            <span class="fw-bold text-warning">
+              <i
+                *ngFor="
+                  let star of product?.ratings
+                    ? [].constructor(Math.floor(product.ratings))
+                    : [];
+                  let i = index
+                "
+                class="fas fa-star"
+              ></i>
+              <i
+                *ngIf="product.ratings % 1 !== 0"
+                class="far fa-star text-secondary"
+              ></i>
+            </span>
+            <span class="text-muted ms-2">{{ product.ratings }}</span>
+          </p>
+
+          <div class="d-flex justify-content-center gap-3 mt-3">
+            <button class="btn btn-success">
+              <a routerLink="/">Buy Now</a>
+            </button>
+            <button class="btn btn-primary">
+              <a routerLink="/">Back to Products</a>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #loadingTemplate>
+  <p class="text-center">Loading product details...</p>
+</ng-template>
