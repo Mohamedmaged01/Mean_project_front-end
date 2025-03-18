@@ -26,7 +26,6 @@
                 <th scope="col">Category image</th>
                 <th scope="col">Category Name</th>
                 <th scope="col">Description</th>
-                <th scope="col">Status</th>
                 <th scope="col">Action</th>
             </tr>
         </thead>
@@ -34,22 +33,21 @@
             <div *ngIf="isLoading" class="loading-spinner">Loading...</div>
             @for (item of categories; track $index){
             <tr>
-                <th scope="row">1</th>
+                <th scope="row">{{item._id}}</th>
                 <td>
-                    <img src="" alt=" food " width="50 " height="50 "></td>
+                    <img [src]="item.image" alt=" food " width="50 " height="50 "></td>
                 <td>{{item.name}}</td>
                 <td>{{item.description}}</td>
-                <td>Active</td>
                 <td>
-                    <button class="btn btn-sm btn-primary" [routerLink]="'/categorydetails'" [queryParams]="{ view: 'view' }">
+                    <button class="btn btn-sm btn-primary" (click)="goToDetails(item)">
                         <i class="fa fa-eye"></i>
                       </button>
 
-                    <button class="btn btn-sm btn-warning ms-2" [routerLink]="'/categorydetails'" [queryParams]="{ view: 'edit' }">
+                    <button class="btn btn-sm btn-warning ms-2" (click)="goToEdit(item)">
                         <i class="fa fa-pen"></i>
                       </button>
 
-                    <button class="btn btn-sm btn-danger ms-2 "><i class="fa fa-trash "></i></button>
+                    <button class="btn btn-sm btn-danger ms-2" (click)="deleteCategory(item._id)"><i class="fa fa-trash "></i></button>
                 </td>
             </tr>
             }

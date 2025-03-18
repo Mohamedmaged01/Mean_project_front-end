@@ -4,6 +4,7 @@ import { RouterLink } from '@angular/router';
 import { SidebarComponent } from '../sidebar/sidebar.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -18,7 +19,7 @@ export class CategoryComponent implements OnInit {
   isLoading = false;
   errorMessage: string | null = null;
   
-  constructor(private categoryService: CategoryService) {}
+  constructor(private categoryService: CategoryService,private router: Router) {}
   
   ngOnInit(): void {
     const token = localStorage.getItem('token');
@@ -50,6 +51,27 @@ export class CategoryComponent implements OnInit {
         this.isLoading = false;
       }
     });
+  }
+
+  goToDetails(category:any){
+    this.router.navigate(['/categorydetails', category._id], { queryParams: { view: 'view' } });
+  }
+
+  goToEdit(category:any){
+    this.router.navigate(['/categorydetails', category._id], { queryParams: { view: 'edit' } });
+  }
+
+  deleteCategory(id:any){
+    this.categoryService.deleteCategory(id).subscribe({
+      next: (response) => {
+        console.log('API Response:', response);
+        this.loadCategories();
+        },
+        error: (error) => {
+          console.error('API Error:', error);
+          this.errorMessage = error.error?.message || 'Failed to delete category';
+          }
+          });
   }
   
 }

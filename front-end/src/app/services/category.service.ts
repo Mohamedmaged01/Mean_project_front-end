@@ -36,11 +36,30 @@ export class CategoryService {
       return throwError(() => new Error("No token available. Please log in."));
     }
     
-    // Use the getHeaders method for consistency
     return this.http.get<any>(this.API_URL);
   }
   
   addCategory(categoryData: any): Observable<any> {
     return this.http.post(this.API_URL, categoryData);
   }
+
+  API_URL1 = 'http://localhost:3000/deletecategory';
+
+  deleteCategory(categoryId: any): Observable<any> {
+    return this.http.delete(`${this.API_URL1}/${categoryId}`);
+  }
+
+
+  API_URL2 = 'http://localhost:3000/getcategorybyid';
+
+  getCategoryDetails(categoryId: number): Observable<any> {
+    return this.http.get<any>(`${this.API_URL2}/${categoryId}`);
+  }
+
+
+  API_URL3 = 'http://localhost:3000/updatecategory';
+  updateCategoryDetails(categoryData: any, categoryId: number): Observable<any> {
+    return this.http.post(`${this.API_URL3}/${categoryId}`, categoryData);
+  }
+  
 }

@@ -5,10 +5,9 @@
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="#" class="text-dark">Home</a></li>
-                <li class="breadcrumb-item"> <a routerLink="/category" class="text-dark">Category</a></li>
+                <li class="breadcrumb-item"><a routerLink="/category" class="text-dark">Category</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Category Details</li>
             </ol>
-
         </nav>
         <div class="d-flex justify-content-between align-items-center mb-4">
             <div>
@@ -18,27 +17,37 @@
         </div>
     </div>
     <div class="row mt-5">
-        <div class="col-lg-4 col-md-2 col-ms-12">
+        <div class="col-lg-4 col-md-2 col-sm-12">
             <div class="card p-4">
                 <h5>Thumbnail</h5>
                 <p class="text-muted">Photo</p>
+
                 <div class="border rounded p-4 text-center" style="border-style: dashed;">
-                    <i class="fa fa-image fa-2x text-secondary"></i>
-                    <p>Drag and drop image here, or click add image</p>
-                    <button class="btn btn-light border text-info">Change Image</button>
+
+                    <img *ngIf="isViewMode && category.image" [src]="category.image" class="img-fluid rounded" alt="Category Image">
+
+                    <i *ngIf="isViewMode && !category.image" class="fa fa-image fa-2x text-secondary"></i>
+                    <p *ngIf="isViewMode && !category.image">No Image Available</p>
+
+                    <ng-container *ngIf="!isViewMode">
+                        <i class="fa fa-image fa-2x text-secondary"></i>
+                        <p>Drag and drop image here, or click add image</p>
+                        <button class="btn btn-light border text-info">Change Image</button>
+                    </ng-container>
                 </div>
             </div>
         </div>
-        <div class="col-lg-8 col-md-10 col-ms-12">
+
+        <div class="col-lg-8 col-md-10 col-sm-12">
             <div class="card p-4">
                 <h5>General Information</h5>
                 <div class="mb-3">
                     <label class="form-label">Category Name</label>
-                    <input type="text" class="form-control" placeholder="Type category name here...">
+                    <input type="text" class="form-control" placeholder="Type category name here..." [(ngModel)]="category.name">
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Description</label>
-                    <textarea class="form-control" rows="3" placeholder="Type category description here..."></textarea>
+                    <textarea class="form-control" rows="3" placeholder="Type category description here..." [(ngModel)]="category.description"></textarea>
                 </div>
             </div>
         </div>

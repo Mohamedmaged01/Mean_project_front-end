@@ -31,7 +31,7 @@ export const routes: Routes = [
         title:'Add Category'
     },
     {
-        path:'categorydetails',
+        path:'categorydetails/:id',
         component:CategorydetailsComponent,
         title:'Category Details' 
     }
