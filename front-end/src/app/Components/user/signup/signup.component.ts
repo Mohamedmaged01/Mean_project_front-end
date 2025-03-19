@@ -2,22 +2,24 @@ import { Component ,OnInit } from '@angular/core';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import {SignupService} from '../../../userservices/signup.service'
+import { Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
 @Component({
   standalone: true,
   selector: 'app-signup',
-  imports: [ReactiveFormsModule,RouterModule],
+  imports: [ReactiveFormsModule,RouterModule,CommonModule],
   templateUrl: './signup.component.html',
   styleUrl: './signup.component.css'
 })
 export class SignupComponent implements OnInit {
   signupForm!: FormGroup;
-
+   
   isSubmitting = false;
   errorMessage: string | null = null;
   successMessage: string | null = null;
 
-  constructor(private fb: FormBuilder, private signupService: SignupService) {}
-
+  constructor(private fb: FormBuilder, private signupService: SignupService,private router: Router) {}
+  
   ngOnInit() {
     this.signupForm = this.fb.group({
       name: ['', [
@@ -48,7 +50,7 @@ export class SignupComponent implements OnInit {
   get f() {
     return this.signupForm.controls;
   }
-
+  
   onSubmit() {
     if (this.signupForm.invalid) return;
 
@@ -61,7 +63,10 @@ export class SignupComponent implements OnInit {
         next: (response) => {
           this.isSubmitting = false;
           this.successMessage = 'Signup successful!';
+          
           this.signupForm.reset();
+          this.router.navigate(['/login']);
+       
         },
         error: (error) => {
           this.isSubmitting = false;

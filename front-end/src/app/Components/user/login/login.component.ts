@@ -1,6 +1,8 @@
 import { Component ,OnInit} from '@angular/core';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {LoginService} from '../../../userservices/login.service'
+import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -20,7 +22,8 @@ export class LoginComponent implements OnInit{
 
   constructor(
     private fb: FormBuilder,
-    private loginService: LoginService
+    private loginService: LoginService,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -51,8 +54,9 @@ export class LoginComponent implements OnInit{
           this.isSubmitting = false;
           this.successMessage = 'Login successful!';
           this.loginForm.reset();
+          this.router.navigate(['/wishlist']); 
           console.log('Login response:', response);
-          //add route to home page
+        
         },
         error: (error) => {
           this.isSubmitting = false;
@@ -63,6 +67,6 @@ export class LoginComponent implements OnInit{
 
 }
 onGoogleLogin() {
-  this.loginService.googleLogin(); // Redirects to Google OAuth via backend
+  this.loginService.googleLogin(); 
 }
 }

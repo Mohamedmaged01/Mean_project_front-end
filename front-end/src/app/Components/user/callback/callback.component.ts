@@ -21,7 +21,7 @@ export class CallbackComponent implements OnInit{
       const token =   params['token'];
       if (token) {
         localStorage.setItem('token', token); 
-        this.router.navigate(['/home']); 
+        this.router.navigate(['/wishlist']); 
       } else {
         this.router.navigate(['/login']); 
       }
