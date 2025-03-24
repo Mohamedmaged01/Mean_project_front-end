@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 import { ProductService } from '../../services/product.service';
 import { ActivatedRoute } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-product-details',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, RouterModule],
   templateUrl: './product-details.component.html',
   styleUrls: ['./product-details.component.css'],
 })
@@ -25,6 +26,9 @@ export class ProductDetailsComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.productId = this.route.snapshot.paramMap.get('id') ?? '';
+    console.log("Product ID:", this.productId);
+
     this.route.paramMap.subscribe((params) => {
       this.productId = params.get('id') || '';
       console.log('Product ID from Route:', this.productId);
