@@ -25,7 +25,7 @@ export class CustomerService {
   }
 
   private API_URL3 = 'http://localhost:3000/users';
-  getCustomerById(id: string): Observable<any> {
+  getCustomerById(id: any): Observable<any> {
     return this.http.get(`${this.API_URL3}/${id}`);
   }
 

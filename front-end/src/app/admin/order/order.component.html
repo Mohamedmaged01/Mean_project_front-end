@@ -13,7 +13,6 @@
         <thead>
             <tr>
                 <th scope="col">ID</th>
-                <th scope="col">Product image</th>
                 <th scope="col">Product Name</th>
                 <th scope="col">Date</th>
                 <th scope="col">Customer</th>
@@ -26,9 +25,7 @@
         <tbody>
             @for (item of orders; track $index) {
             <tr>
-                <th scope="row">1</th>
-                <td>
-                    <img src="" alt=" food " width="50 " height="50 "></td>
+                <th scope="row">{{$index+1}}</th>
                 <td>{{item.items[0].name}} <br> +{{item.items.length-1}} other Product</td>
                 <td>{{item.createdAt | date : 'dd/mm/yyyy'}}</td>
                 <td>{{item.user.name}}</td>

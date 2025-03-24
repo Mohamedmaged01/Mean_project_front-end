@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-order',
-  imports: [SidebarComponent,RouterLink,CommonModule],
+  imports: [SidebarComponent,CommonModule],
   templateUrl: './order.component.html',
   styleUrl: './order.component.css'
 })
