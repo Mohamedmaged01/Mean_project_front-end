@@ -1,72 +1,84 @@
-
+<!-- cart.component.html -->
 <div class="container cart-container">
-   
-    <div class="row">
-        <div class="col-md-8">
-            <table class="table cart-table">
-                <thead>
-                    <tr>
-                        <th>Product</th>
-                        <th>Price</th>
-                        <th>Quantity</th>
-                        <th>Subtotal</th>
-                    </tr>
-                </thead>
-                <tbody>
-                  
-                    <tr>
-                        <td>
-                            <img src="https://cdn4.vectorstock.com/i/1000x1000/99/88/television-lcd-modern-icon-vector-10179988.jpg" alt="LCD Monitor">
-                            LCD Monitor
-                            <span class="text-danger">✖</span>
-                        </td>
-                        <td>$650</td>
-                        <td>
-                            <input type="number" class="form-control quantity-input" value="1" min="1">
-                        </td>
-                        <td>$650</td>
-                    </tr>
-                   
-                </tbody>
-            </table>
+  <div class="row">
+    <div class="col-md-8">
+      @if (loading) {
+        <div>Loading cart items...</div>
+      } @else if (error) {
+        <div class="alert alert-danger">{{ error }}</div>
+      } @else {
+        <table class="table cart-table">
+          <thead>
+            <tr>
+              <th>Product</th>
+              <th>Price</th>
+              <th>Quantity</th>
+              <th>Subtotal</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (item of cartItems; track item.productid._id) {
+              <tr>
+                <td>
+                  <img [src]="item.productid.images?.[0] || ''" 
+                       [alt]="item.productid.name || 'Product'" 
+                       width="50">
+                  {{ item.productid.name || 'Loading...' }}
+                  <span class="text-danger" 
+                        (click)="removeItem(item)" 
+                        style="cursor: pointer">✖</span>
+                </td>
+                <td>${{ item.productid.price || 0 }}</td>
+                <td>
+                  <div class="input-group" style="width: 130px;">
+                    <button class="btn btn-outline-secondary" 
+                            (click)="decreaseQuantity(item)">-</button>
+                    <input type="number" 
+                           class="form-control quantity-input" 
+                           [value]="item.quantity" 
+                           readonly>
+                    <button class="btn btn-outline-secondary" 
+                            [disabled]="isIncreaseDisabled(item)"
+                            (click)="increaseQuantity(item)">+</button>
+                  </div>
+                </td>
+                <td>${{ getSubtotal(item) }}</td>
+              </tr>
+            } @empty {
+              <tr>
+                <td colspan="4">Your cart is empty</td>
+              </tr>
+            }
+          </tbody>
+        </table>
 
-            <!-- Buttons -->
-            <div class="d-flex justify-content-between">
-                <button class="btn btn-outline-secondary return-to-shop">Return to Shop</button>
-                <button class="btn btn-outline-secondary update-cart">Update Cart</button>
-            </div>
-
-            <!-- Coupon Section -->
-            <div class="coupon-section">
-                <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Coupon Code">
-                    <button class="btn btn-danger">Apply Coupon</button>
-                </div>
-            </div>
+        <div class="d-flex justify-content-between">
+          <button class="btn btn-outline-secondary return-to-shop">Return to Shop</button>
         </div>
-
-        <!-- Cart Summary -->
-        <div class="row">
-            <div class="col-12">
-                <div class="cart-summary">
-                    <h5>Cart Total</h5>
-                    <hr>
-                    <div class="d-flex justify-content-between">
-                        <span>Subtotal:</span>
-                        <span>$1750</span>
-                    </div>
-                    <div class="d-flex justify-content-between mt-2">
-                        <span>Shipping:</span>
-                        <span>Free</span>
-                    </div>
-                    <hr>
-                    <div class="d-flex justify-content-between">
-                        <span><strong>Total:</strong></span>
-                        <span><strong>$1750</strong></span>
-                    </div>
-                    <button class="btn btn-danger w-100 mt-3">Proceed to Checkout</button>
-                </div>
-            </div>
-        </div>
+      }
     </div>
+
+    <div class="row">
+      <div class="col-12">
+        <div class="cart-summary">
+          <h5>Cart Total</h5>
+          <hr>
+          <div class="d-flex justify-content-between">
+            <span>Subtotal:</span>
+            <span>${{ getCartTotal() }}</span>
+          </div>
+          <div class="d-flex justify-content-between mt-2">
+            <span>Shipping:</span>
+            <span>Free</span>
+          </div>
+          <hr>
+          <div class="d-flex justify-content-between">
+            <span><strong>Total:</strong></span>
+            <span><strong>${{ getCartTotal() }}</strong></span>
+          </div>
+          <button class="btn btn-danger w-100 mt-3">Proceed to Checkout</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

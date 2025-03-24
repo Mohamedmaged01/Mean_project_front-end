@@ -54,7 +54,7 @@ export class LoginComponent implements OnInit{
           this.isSubmitting = false;
           this.successMessage = 'Login successful!';
           this.loginForm.reset();
-          this.router.navigate(['/wishlist']); 
+          this.router.navigate(['/cart']); 
           console.log('Login response:', response);
         
         },
