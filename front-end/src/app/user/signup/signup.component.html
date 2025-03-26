@@ -1,4 +1,5 @@
-<div class="body">
+<!-- <div class="body">
+
   <div class="container">
     <div class="login-box">
       <form class="form" [formGroup]="signupForm" (ngSubmit)="onSubmit()">
@@ -112,6 +113,105 @@
           <a routerLink="/login" class="link">Sign in</a>
         </p>
       </form>
+    </div>
+  </div>
+</div> -->
+
+
+<div class="main-container">
+  <div class="container">
+    <div class="row">
+      <!-- Left Section: Image -->
+      <div class="col-md-6 image-section">
+        <img
+          src="https://s3-alpha-sig.figma.com/img/75f3/94c0/a1c7dc5b68a42239311e510f54d8cd59?Expires=1743984000&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=MalUsgpZiWD1b2D0CgTQaWjoSSfCVEcTgNJFL9n6fOZWDcdS8vwbGNo6eaufKrknIaRsvPEOwallTnjzQIB~DEBdMRRzsunRpmRoYhe6yU00-DBNFBLbOZLTubyn7Y6S4Jfn3P6OwFRPfIontXYBpGtzUzrnn5SqpUFwLCYF0etSr5W~QgkXKXZTAnGTOAdxL9pFGArx3px2KxPvgOjLOQUCnh9PH3UBG4~PeV3a4iGzXNc9tTl8I0xk1veWJDLubf1n4LrCX9oxGeFOulMagI5epqtQbkKtwoNlfLwGi0rOKR1zcND0aY6VyPG16SeqqWzG46jbw77R4EqwwCt-~g__"
+          alt="Smartphone and Cart">
+      </div>
+      <!-- Right Section: Form -->
+      <div class="col-md-6 form-section">
+        <h2>Create an account</h2>
+        <p>Enter your details below</p>
+        <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+          @if (successMessage) {
+            <div class="success-message">{{ successMessage }}</div>
+          }
+          @if (errorMessage) {
+            <div class="error-message">{{ errorMessage }}</div>
+          }
+          <div class="mb-3">
+            <input type="text" class="form-control" placeholder="Name" formControlName="name"
+              [class.is-invalid]="f['name'].touched && f['name'].errors" required>
+            @if (f['name'].touched && f['name'].errors) {
+              <div class="invalid-feedback">
+                @if (f['name'].errors['required']) {
+                  <div>Full name is required</div>
+                }
+                @if (f['name'].errors['minlength']) {
+                  <div>Minimum length is 2 characters</div>
+                }
+                @if (f['name'].errors['pattern']) {
+                  <div>Only letters are allowed</div>
+                }
+              </div>
+            }
+          </div>
+          
+          <div class="mb-3">
+            <input type="text" class="form-control" placeholder="Email"
+              formControlName="email"
+              [class.is-invalid]="f['email'].touched && f['email'].errors" 
+              required>
+            @if (f['email'].touched && f['email'].errors) {
+              <div class="invalid-feedback">
+                @if (f['email'].errors['required']) {
+                  <div>Email is required</div>
+                }
+                @if (f['email'].errors['email']) {
+                  <div>Please enter a valid email</div>
+                }
+              </div>
+            }
+          </div>
+
+          <div class="mb-3 position-relative">
+            <input 
+              [type]="showPassword ? 'text' : 'password'" 
+              class="form-control" 
+              placeholder="Password"
+              formControlName="password"
+              [class.is-invalid]="f['password'].touched && f['password'].errors"
+              required>
+            <span class="password-toggle" (click)="togglePasswordVisibility()" [attr.aria-label]="showPassword ? 'Hide password' : 'Show password'">
+              <i [class]="showPassword ? 'fas fa-eye-slash' : 'fas fa-eye'"></i>
+            </span>
+            @if (f['password'].touched && f['password'].errors) {
+              <div class="invalid-feedback">
+                @if (f['password'].errors['required']) {
+                  <div>Password is required</div>
+                }
+                @if (f['password'].errors['minlength']) {
+                  <div>Minimum length is 8 characters</div>
+                }
+                @if (f['password'].errors['pattern']) {
+                  <div>Must contain uppercase, lowercase, and number</div>
+                }
+              </div>
+            }
+          </div>
+          <button type="submit" class="btn btn-create w-100"
+            [disabled]="signupForm.invalid || isSubmitting">
+            {{ isSubmitting ? 'Signing Up...' : 'Sign Up' }}
+          </button>
+          <button type="button" class="btn btn-google w-100 mt-3" (click)="signUpWithGoogle()">
+            <img src="https://www.google.com/favicon.ico" alt="Google Icon">
+            Sign up with Google
+          </button>
+        </form>
+        <div class="login-link">
+          <span>Already have account? </span>
+          <a routerLink="/login">Log in</a>
+        </div>
+      </div>
     </div>
   </div>
 </div>

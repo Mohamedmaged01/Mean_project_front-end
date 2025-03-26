@@ -1,61 +1,69 @@
 <!-- Loading indicator -->
 @if (loading$ | async) {
-<div class="loading">
+  <div class="loading">
     <span class="spinner"></span> Loading your wishlist...
-</div>
+  </div>
 }
 
 <!-- Error display -->
 @if (error$ | async; as error) {
-<div class="error-alert">
+  <div class="error-alert">
     <span>{{ error }}</span>
     <button class="dismiss-btn" (click)="clearError()">Dismiss</button>
-</div>
+  </div>
 }
 
 <!-- Wishlist content -->
 @if (!(loading$ | async) && !(error$ | async)) {
-<div class="wishlist-container">
+  <div class="wishlist-container">
     @for (product of wishlistItems; track product._id) {
-    <div class="wishlist-card">
+      <div class="wishlist-card">
         <div class="card-header">
-            <h3 class="product-name">{{ product.name }}</h3>
+          <h3 class="product-name">{{ product.name }}</h3>
         </div>
         <div class="card-body">
-            <div class="product-image">
-                <img [src]="product.images[0]" [alt]="product.name" (error)="handleImageError($event)">
-            </div>
-            <div class="product-details">
-                <p class="product-price">${{ product.price.toFixed(2) }}</p>
-                <p class="product-description">{{ product.description }}</p>
-                <p class="product-category">Category:</p>
-                <p class="product-availability" [ngClass]="{'available': product.isAvailble, 'unavailable': !product.isAvailble}">
-                    {{ product.isAvailble ? 'In Stock' : 'Out of Stock' }}
-                </p>
-            </div>
+          <div class="product-image">
+            <img [src]="product.images[0]" [alt]="product.name" (error)="handleImageError($event)">
+          </div>
+          <div class="product-details">
+            <p class="product-price">${{ product.price.toFixed(2) }}</p>
+            <p class="product-description">{{ product.description }}</p>
+            <p class="product-category">Category: {{ product.category }}</p>
+            <p class="product-availability" [ngClass]="{'available': product.isAvailble, 'unavailable': !product.isAvailble}">
+              {{ product.isAvailble ? 'In Stock' : 'Out of Stock' }}
+            </p>
+          </div>
         </div>
         <div class="card-footer">
-            <button class="remove-btn" (click)="removeFromWishlist(product)">
+          <button class="remove-btn" (click)="removeFromWishlist(product)">
             Remove from Wishlist
           </button>
         </div>
-    </div>
+      </div>
     } @empty {
-    <div class="empty-message">
+      <div class="empty-message">
         <p>Your wishlist is empty</p>
         <button class="shop-btn">Start Shopping</button>
-    </div>
+      </div>
     }
 
     <!-- Pagination controls -->
     @if (totalPages > 1) {
-    <div class="pagination">
-        <button class="nav-btn" [disabled]="currentPage === 1" (click)="goToPage(currentPage - 1)">
+      <div class="pagination">
+        <button
+          class="nav-btn"
+          [disabled]="currentPage === 1"
+          (click)="goToPage(currentPage - 1)"
+        >
           Previous
         </button>
         <span class="page-info">Page {{ currentPage }} of {{ totalPages }}</span>
         <span class="total-info">Total Items: {{ totalItems }}</span>
-        <button class="nav-btn" [disabled]="currentPage === totalPages" (click)="goToPage(currentPage + 1)">
+        <button
+          class="nav-btn"
+          [disabled]="currentPage === totalPages"
+          (click)="goToPage(currentPage + 1)"
+        >
           Next
         </button>
         <select class="page-size-select" (change)="changePageSize($event)">
@@ -63,7 +71,7 @@
           <option value="10" [selected]="pageSize === 10">10 per page</option>
           <option value="20" [selected]="pageSize === 20">20 per page</option>
         </select>
-    </div>
+      </div>
     }
-</div>
+  </div>
 }

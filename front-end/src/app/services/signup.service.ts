@@ -22,8 +22,6 @@ export class SignupService {
   googleLogin(): void {
     window.location.href = this.googleAuthUrl; 
   }
-
-
   private handleError(error: HttpErrorResponse): Observable<never> {
     let errorMessage = 'An unknown error occurred';
     if (error.error instanceof ErrorEvent) {

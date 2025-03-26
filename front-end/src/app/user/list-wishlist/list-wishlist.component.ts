@@ -1,9 +1,8 @@
-import { Component,OnInit,OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import{Product} from  '../../../../interfaces/Product_model';
+import { Product } from '../../../../interfaces/Product_model';
 import { ActivatedRoute, Router } from '@angular/router';
-import { WishlistService } from '../../userservices/wishlist.service';
-
+import { WishlistService } from '../../services/wishlist.service';
 import { Subscription } from 'rxjs';
 import { CommonModule } from '@angular/common';
 @Component({
@@ -11,9 +10,9 @@ import { CommonModule } from '@angular/common';
   selector: 'app-list-wishlist',
   imports: [CommonModule],
   templateUrl: './list-wishlist.component.html',
-  styleUrl: './list-wishlist.component.css'
+  styleUrl: './list-wishlist.component.css',
 })
-export class ListWishlistComponent implements OnInit ,OnDestroy {
+export class ListWishlistComponent implements OnInit, OnDestroy {
   wishlistItems: Product[] = [];
   totalItems: number = 0;
   totalPages: number = 0;
@@ -26,22 +25,22 @@ export class ListWishlistComponent implements OnInit ,OnDestroy {
   ngOnInit(): void {
     this.subscriptions.add(
       this.wishlistService.wishlistItems$.subscribe(
-        items => this.wishlistItems = items
+        (items) => (this.wishlistItems = items)
       )
     );
     this.subscriptions.add(
       this.wishlistService.totalItems$.subscribe(
-        total => this.totalItems = total
+        (total) => (this.totalItems = total)
       )
     );
     this.subscriptions.add(
       this.wishlistService.totalPages$.subscribe(
-        pages => this.totalPages = pages
+        (pages) => (this.totalPages = pages)
       )
     );
     this.subscriptions.add(
       this.wishlistService.currentPage$.subscribe(
-        page => this.currentPage = page
+        (page) => (this.currentPage = page)
       )
     );
   }
@@ -50,7 +49,7 @@ export class ListWishlistComponent implements OnInit ,OnDestroy {
     this.subscriptions.add(
       this.wishlistService.addToWishlist(product).subscribe({
         next: () => console.log('Product added to wishlist'),
-        error: () => {}
+        error: () => {},
       })
     );
   }
@@ -59,7 +58,7 @@ export class ListWishlistComponent implements OnInit ,OnDestroy {
     this.subscriptions.add(
       this.wishlistService.removeFromWishlist(product).subscribe({
         next: () => console.log('Product removed from wishlist'),
-        error: () => {}
+        error: () => {},
       })
     );
   }
@@ -87,6 +86,10 @@ export class ListWishlistComponent implements OnInit ,OnDestroy {
     this.subscriptions.unsubscribe();
   }
 
-  get loading$() { return this.wishlistService.loading$; }
-  get error$() { return this.wishlistService.error$; }
+  get loading$() {
+    return this.wishlistService.loading$;
+  }
+  get error$() {
+    return this.wishlistService.error$;
+  }
 }
