@@ -28,6 +28,8 @@ import { UpdateproductComponent } from './admin/updateproduct/updateproduct.comp
 import { ProductComponent } from './admin/product/product.component';
 import { AdminHomeComponent } from './admin/admin-home/admin-home.component';
 import { AuthGuard } from './gaurds/auth.guard';
+import { UserorderComponent } from './user/userorder/userorder.component';
+import { PaymentComponent } from './user/payment/payment.component';
 export const routes: Routes = [
   { path: 'signup', component: SignupComponent },
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -97,8 +99,8 @@ export const routes: Routes = [
     title: 'Update Customer',
   },
   {
-    path: 'order',
-    component: OrderComponent,
+    path: 'userorder',
+    component: UserorderComponent,
     title: 'Order',
   },
   { path: 'adminproducts', component: ProductComponent },
@@ -115,6 +117,11 @@ export const routes: Routes = [
   { path: 'flash-sales', component: FlashSalesComponent },
   { path: 'userproducts', component: ProductListComponent },
   { path: 'userproducts/:id', component: ProductDetailsComponent },
+  {
+    path:'payment',
+    component:PaymentComponent,
+    title:'Payment'
+  }
 ];
 
 @NgModule({

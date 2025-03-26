@@ -1,100 +1,72 @@
 <app-sidebar></app-sidebar>
 <div class="container mt-5">
-  <h1>Products</h1>
+    <h1>Products</h1>
 
-  <div class="d-flex justify-content-between align-items-center">
-    <nav aria-label="breadcrumb">
-      <ol class="breadcrumb">
-        <li class="breadcrumb-item">
-          <a routerLink="/" class="text-dark">Home</a>
-        </li>
-        <li class="breadcrumb-item active" aria-current="page">Product</li>
-      </ol>
-    </nav>
-    <button type="button" class="btn btn-info" routerLink="/addproduct">
+    <div class="d-flex justify-content-between align-items-center">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a routerLink="/" class="text-dark">Home</a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">Product</li>
+            </ol>
+        </nav>
+        <button type="button" class="btn btn-info" routerLink="/addproduct">
       + Add Product
     </button>
-  </div>
+    </div>
 
-  <nav class="navbar bg-body-tertiary my-3">
-    <div class="container-fluid">
-      <form class="d-flex" (submit)="$event.preventDefault()">
-        <input
-          class="form-control me-2"
-          type="search"
-          placeholder="🔍 Search"
-          [(ngModel)]="searchQuery"
-          (ngModelChange)="searchProducts()"
-        />
-        <button
-          type="button"
-          class="btn btn-outline-success"
-          (click)="searchProducts()"
-        >
+    <nav class="navbar bg-body-tertiary my-3">
+        <div class="container-fluid">
+            <form class="d-flex" (submit)="$event.preventDefault()">
+                <input class="form-control me-2" type="search" placeholder="🔍 Search" [(ngModel)]="searchQuery" (ngModelChange)="searchProducts()" />
+                <button type="button" class="btn btn-outline-success" (click)="searchProducts()">
           Search
         </button>
-      </form>
-    </div>
-  </nav>
+            </form>
+        </div>
+    </nav>
 
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Product Image</th>
-        <th>Product Name</th>
-        <th>Description</th>
-        <th>Price</th>
-        <th>Stock</th>
-        <th>Action</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let product of filteredProducts; let i = index">
-        <th>{{ product.id }}</th>
-        <td>
-          <img [src]="product.image" alt="product" width="50" height="50" />
-        </td>
-        <td>{{ product.name }}</td>
-        <td>{{ product.description }}</td>
-        <td>${{ product.price }}</td>
-        <td
-          [ngClass]="{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Product Image</th>
+                <th>Product Name</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>Stock</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let product of filteredProducts; let i = index">
+                <th>{{ product.id }}</th>
+                <td>
+                    <img [src]="product.image" alt="product" width="50" height="50" />
+                </td>
+                <td>{{ product.name }}</td>
+                <td>{{ product.description }}</td>
+                <td>${{ product.price }}</td>
+                <td [ngClass]="{
             'text-success': product.stock > 0,
             'text-danger': product.stock === 0
-          }"
-        >
-          {{ product.stock > 0 ? "In Stock" : "Out of Stock" }}
-        </td>
-        <td>
-          <a
-            class="btn btn-sm btn-primary"
-            [routerLink]="['/productdetails']"
-            [queryParams]="{ view: 'view' }"
-            title="View Product"
-          >
-            <i class="fa fa-eye"></i>
-          </a>
+          }">
+                    {{ product.stock > 0 ? "In Stock" : "Out of Stock" }}
+                </td>
+                <td>
+                    <a class="btn btn-sm btn-primary" [routerLink]="['/productdetails']" [queryParams]="{ view: 'view' }" title="View Product">
+                        <i class="fa fa-eye"></i>
+                    </a>
 
-          <a
-            class="btn btn-sm btn-warning ms-2"
-            [routerLink]="['/productdetails']"
-            [queryParams]="{ view: 'edit' }"
-            title="Edit Product"
-          >
-            <i class="fa fa-pen"></i>
-          </a>
-
-          <button
-            type="button"
-            class="btn btn-sm btn-danger ms-2"
-            (click)="deleteProduct(product.id, product.name)"
-            title="Delete Product"
-          >
-            <i class="fa fa-trash"></i>
-          </button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+                    <a class="btn btn-sm btn-warning ms-2" [routerLink]="['/productdetails']" [queryParams]="{ view: 'edit' }" title="Edit Product">
+                        <i class="fa fa-pen"></i>
+                    </a>
+                    <button type="button" class="btn btn-sm btn-danger ms-2" (click)="deleteProduct(product.id, product.name)" title="Delete Product">
+                        <i class="fa fa-trash"></i>
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </div>

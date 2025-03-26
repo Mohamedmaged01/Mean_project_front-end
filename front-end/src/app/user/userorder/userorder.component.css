@@ -1,0 +1,33 @@
+li a {
+    text-decoration: none;
+    color: gray;
+}
+
+body {
+    background-color: #f8f9fa;
+}
+
+.checkout-container {
+    max-width: 900px;
+    margin: 50px auto;
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.order-summary {
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+.btn-custom {
+    background-color: #d9534f;
+    color: #fff;
+    border-radius: 5px;
+}
+
+.btn-custom:hover {
+    background-color: #c9302c;
+}
