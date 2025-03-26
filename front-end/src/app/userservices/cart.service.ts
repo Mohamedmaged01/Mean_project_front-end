@@ -15,10 +15,10 @@ export class CartService {
     return this.http.get<any>(`${this.apiUrl}`)
   }
 
-  removeFromCart(productId: string): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/deletefromcart/${productId}`).pipe(
-      catchError(this.handleError)
-    );
+  private apiUrl1 = 'http://localhost:3000/deletefromcart';
+
+  removeFromCart(productId: any): Observable<any> {
+    return this.http.delete(`${this.apiUrl1}/${productId}`);
   }
 
   private handleError(error: HttpErrorResponse) {
@@ -30,4 +30,23 @@ export class CartService {
   applyPromoCode(id : any, promoCode: string): Observable<any> {
     return this.http.post(`${this.api}/${id}`, { promoCode }).pipe( catchError(this.handleError));
   }
+
+  private api1= 'http://localhost:3000/updatecartquantity';
+
+  updateCartQuantity(productId: string, quantity: number): Observable<any> {
+  const body = { productid: productId, quantity }
+  return this.http.put(this.api1, body);
+  }
+
+
+  private api2= 'http://localhost:3000/products/stock';
+  getStock(id : any): Observable<any> {
+    return this.http.get(`${this.api2}/${id}`);
+  }
+
+  private couponApi = 'http://localhost:3000/checkcoupon';
+checkCoupon(code: string): Observable<any> {
+  return this.http.post(this.couponApi, { code });
+}
+
 }
