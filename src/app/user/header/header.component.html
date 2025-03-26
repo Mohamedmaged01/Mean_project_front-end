@@ -157,23 +157,11 @@
         type="text"
         class="form-control"
         [(ngModel)]="searchQuery"
-        (input)="onSearchInput()"
-        name="mobileSearch"
+        (keyup.enter)="searchProducts()"
+        id="mobileSearchInput"
         placeholder="What are you looking for?"
       />
-      <button
-        *ngIf="searchQuery"
-        class="btn btn-outline-secondary"
-        type="button"
-        (click)="clearSearch()"
-      >
-        <i class="fas fa-times"></i>
-      </button>
-      <button
-        class="btn btn-dark"
-        type="button"
-        (click)="searchProducts($event)"
-      >
+      <button class="btn btn-dark" type="button" (click)="searchProducts()">
         <i class="fa-solid fa-magnifying-glass"></i>
       </button>
     </div>

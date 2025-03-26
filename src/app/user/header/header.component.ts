@@ -33,10 +33,17 @@ export class HeaderComponent {
   }
 
   toggleMobileSearch() {
-    this.showMobileSearch = !this.showMobileSearch;
     const offcanvas = document.getElementById('mobileSearchOffcanvas');
     const bsOffcanvas = new (window as any).bootstrap.Offcanvas(offcanvas);
-    bsOffcanvas.toggle();
+
+    bsOffcanvas.show();
+
+    setTimeout(() => {
+      const searchInput = document.getElementById('mobileSearchInput');
+      if (searchInput) {
+        searchInput.focus();
+      }
+    }, 100);
   }
 
   logout() {
@@ -62,6 +69,15 @@ export class HeaderComponent {
     });
 
     this.closeMobileSearch();
+    console.log("Searching for:", this.searchQuery);
+
+    const offcanvas = document.getElementById('mobileSearchOffcanvas');
+    const bsOffcanvas = new (window as any).bootstrap.Offcanvas(offcanvas);
+    bsOffcanvas.hide();
+
+    if (this.searchQuery.trim()) {
+      this.router.navigate(['/userproducts'], { queryParams: { q: this.searchQuery } });
+    }
   }
 
   clearSearch() {

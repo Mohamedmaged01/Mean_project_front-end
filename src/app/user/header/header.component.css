@@ -84,3 +84,11 @@ a:hover, .input-group i:hover {
   z-index: 5;
 }
 
+.offcanvas-top {
+  height: auto;
+  padding: 1rem;
+}
+
+#mobileSearchInput {
+  border-radius: 0.25rem 0 0 0.25rem !important;
+}
