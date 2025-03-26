@@ -1,6 +1,6 @@
-<!-- cart.component.html -->
 <div class="container cart-container">
   <div class="row">
+    <!-- Cart Table (Left Column) -->
     <div class="col-md-8">
       @if (loading) {
         <div>Loading cart items...</div>
@@ -20,15 +20,15 @@
             @for (item of cartItems; track item.productid._id) {
               <tr>
                 <td>
-                  <img [src]="item.productid.images?.[0] || ''" 
-                       [alt]="item.productid.name || 'Product'" 
+                  <img [src]="item.productid?.images?.[0] || ''" 
+                       [alt]="item.productid?.name || 'Product'" 
                        width="50">
-                  {{ item.productid.name || 'Loading...' }}
+                  {{ item.productid?.name || 'Loading...' }}
                   <span class="text-danger" 
                         (click)="removeItem(item)" 
                         style="cursor: pointer">✖</span>
                 </td>
-                <td>${{ item.productid.price || 0 }}</td>
+                <td>${{ item.productid?.price || 0 }}</td>
                 <td>
                   <div class="input-group" style="width: 130px;">
                     <button class="btn btn-outline-secondary" 
@@ -53,31 +53,30 @@
         </table>
 
         <div class="d-flex justify-content-between">
-          <button class="btn btn-outline-secondary return-to-shop">Return to Shop</button>
+          <button class="btn btn-outline-secondary return-to-shop" (click)="returnToShop()">Return to Shop</button>
         </div>
       }
     </div>
 
-    <div class="row">
-      <div class="col-12">
-        <div class="cart-summary">
-          <h5>Cart Total</h5>
-          <hr>
-          <div class="d-flex justify-content-between">
-            <span>Subtotal:</span>
-            <span>${{ getCartTotal() }}</span>
-          </div>
-          <div class="d-flex justify-content-between mt-2">
-            <span>Shipping:</span>
-            <span>Free</span>
-          </div>
-          <hr>
-          <div class="d-flex justify-content-between">
-            <span><strong>Total:</strong></span>
-            <span><strong>${{ getCartTotal() }}</strong></span>
-          </div>
-          <button class="btn btn-danger w-100 mt-3">Proceed to Checkout</button>
+    <!-- Cart Summary (Right Column) -->
+    <div class="col-md-4 d-flex align-items-end">
+      <div class="cart-summary">
+        <h5>Cart Total</h5>
+        <hr>
+        <div class="d-flex justify-content-between">
+          <span>Subtotal:</span>
+          <span>${{ getCartTotal() }}</span>
         </div>
+        <div class="d-flex justify-content-between mt-2">
+          <span>Shipping:</span>
+          <span>Free</span>
+        </div>
+        <hr>
+        <div class="d-flex justify-content-between">
+          <span><strong>Total:</strong></span>
+          <span><strong>${{ getCartTotal() }}</strong></span>
+        </div>
+        <button class="btn btn-danger w-100 mt-3" (click)="proceedToCheckout()">Proceed to Checkout</button>
       </div>
     </div>
   </div>

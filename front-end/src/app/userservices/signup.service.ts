@@ -10,6 +10,7 @@ import { catchError } from 'rxjs/operators';
 })
 export class SignupService {
  url :string=  'http://localhost:3000/signup';
+ private googleAuthUrl: string = 'http://localhost:3000/auth/google';
   constructor (private http: HttpClient) { }
 
   createUser(data: usermodel): Observable<any> {
@@ -17,6 +18,11 @@ export class SignupService {
       catchError(this.handleError)
     );
   }
+  
+  googleLogin(): void {
+    window.location.href = this.googleAuthUrl; 
+  }
+
 
   private handleError(error: HttpErrorResponse): Observable<never> {
     let errorMessage = 'An unknown error occurred';
