@@ -1,0 +1,60 @@
+.card {
+  overflow: hidden;
+  transition: transform 0.3s ease-in-out;
+  position: relative;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  border-color: #dc3545;
+
+}
+
+.add-to-cart-overlay {
+  position: absolute;
+  bottom: -50px;
+  left: 0;
+  width: 100%;
+  opacity: 0;
+  transition: bottom 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+.card:hover .add-to-cart-overlay {
+  bottom: 0;
+  opacity: 1;
+}
+
+.product-rating {
+  margin-bottom: 10px;
+  transition: margin-bottom 0.3s ease-in-out;
+}
+
+.card:hover .product-rating {
+  margin-bottom: 20px;
+}
+
+.icon-btn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background: white;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: background 0.3s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.icon-btn:hover {
+  background: #f8f9fa;
+  transform: scale(1.1);
+}
+
+.icon-btn i {
+  font-size: 16px;
+  color: #333;
+}
+
+.icon-btn i:hover {
+  color: #dc3545;
+}

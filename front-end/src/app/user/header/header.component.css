@@ -1,0 +1,16 @@
+.navbar-nav .nav-link {
+  font-weight: 500;
+  padding: 8px 15px;
+}
+
+.active {
+  color: #c54452 !important;
+  font-weight: bold !important;
+  text-decoration: underline;
+}
+
+.form-control {
+  width: 200px;
+  border: 1px solid #ccc;
+  background-color: #f8f8f8;
+}

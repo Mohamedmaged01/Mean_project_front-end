@@ -1,0 +1,38 @@
+<div class="container my-5">
+  <div class="d-flex align-items-center mb-3">
+    <span class="category-badge"></span>
+    <h6 class="text-danger fw-bold ms-2 mb-0">Categories</h6>
+  </div>
+
+  <div class="d-flex align-items-center mb-2">
+    <div class="d-flex justify-content-center align-items-center">
+      <h3 class="fw-bold">Browse By Category</h3>
+    </div>
+
+    <div class="ms-auto d-flex">
+      <button #prevButton class="swiper-button-prev btn btn-light me-1">
+        <i class="fas fa-chevron-left"></i>
+      </button>
+      <button #nextButton class="swiper-button-next btn btn-light">
+        <i class="fas fa-chevron-right"></i>
+      </button>
+    </div>
+  </div>
+</div>
+<div class="swiper-container" #flashSalesSlider>
+  <div class="swiper-wrapper">
+    <div class="swiper-slide" *ngFor="let category of categories">
+      <div class="category-card p-3 text-center" [routerLink]="['/userproducts', category._id]">
+        <img [src]="category.image" [alt]="category.name" class="img-fluid mb-2" style="max-height: 100px;">
+        <h5 class="mb-0">{{ category.name }}</h5>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="categories.length === 0" class="text-center py-5">
+  <div class="spinner-border text-primary" role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+  <p class="mt-2">Loading categories...</p>
+</div>

@@ -1,0 +1,36 @@
+<div class="container mt-5">
+  <h1>Update Product</h1>
+  <input
+    type="text"
+    class="form-control mt-3"
+    placeholder="Enter Product ID"
+    [(ngModel)]="productId"
+  />
+  <button class="btn btn-primary mt-3" (click)="fetchProduct()">
+    Fetch Product
+  </button>
+
+  <div *ngIf="product" class="mt-4">
+    <input
+      type="text"
+      class="form-control"
+      [(ngModel)]="product.name"
+      placeholder="Product Name"
+    />
+    <input
+      type="number"
+      class="form-control mt-2"
+      [(ngModel)]="product.price"
+      placeholder="Price"
+    />
+    <input
+      type="number"
+      class="form-control mt-2"
+      [(ngModel)]="product.stock"
+      placeholder="Stock"
+    />
+    <button class="btn btn-success mt-3" (click)="updateProduct()">
+      Update
+    </button>
+  </div>
+</div>

@@ -1,0 +1,119 @@
+<app-navbar></app-navbar>
+<div class="sidebar-container">
+  <div class="d-flex flex-row links pt-2">
+    <nav>
+      <div class="container-fluid side">
+        <button
+          class="btn btn-dark sidebar-toggle"
+          type="button"
+          data-bs-toggle="offcanvas"
+          data-bs-target="#sidebarMenu"
+          aria-controls="sidebarMenu"
+          aria-label="Toggle sidebar"
+        >
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </nav>
+
+    <div
+      class="offcanvas offcanvas-start"
+      tabindex="-1"
+      id="sidebarMenu"
+      aria-labelledby="sidebarLabel"
+    >
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="sidebarLabel">El Ro3b Store</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="offcanvas"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="offcanvas-body p-0">
+        <div class="admin-dashboard mb-3">
+          <span>Admin Dashboard</span>
+        </div>
+        <ul class="list-group list-group-flush">
+          <!-- Products Dropdown - Now pushes content down -->
+          <li class="list-group-item border-0 px-3 py-2">
+            <div class="dropdown">
+              <button
+                class="btn btn-outline-info dropdown-toggle w-100 text-start d-flex align-items-center"
+                type="button"
+                id="productsDropdown"
+                data-bs-toggle="collapse"
+                data-bs-target="#productsMenu"
+                aria-expanded="false"
+                aria-controls="productsMenu"
+              >
+                <i class="fas fa-shopping-bag me-2"></i>
+                <span>Products</span>
+              </button>
+              <div id="productsMenu" class="collapse">
+                <ul class="list-group list-group-flush ps-4">
+                  <li class="list-group-item border-0">
+                    <a class="dropdown-item" [routerLink]="'/adminproducts'">
+                      <i class="fas fa-box me-2"></i>Products
+                    </a>
+                  </li>
+                  <li class="list-group-item border-0">
+                    <a class="dropdown-item" [routerLink]="'/category'">
+                      <i class="fas fa-tags me-2"></i>Categories
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </li>
+
+          <!-- Other menu items (will be pushed down) -->
+          <li class="list-group-item border-0 px-3 py-2">
+            <a
+              class="d-flex align-items-center justify-content-between"
+              [routerLink]="'/order'"
+            >
+              <span>
+                <i class="fas fa-shopping-cart me-2"></i>
+                Orders
+              </span>
+              <span class="badge bg-danger">4</span>
+            </a>
+          </li>
+
+          <li class="list-group-item border-0 px-3 py-2">
+            <a class="d-flex align-items-center" [routerLink]="'/customer'">
+              <i class="fas fa-users me-2"></i>
+              Customers
+            </a>
+          </li>
+
+          <li class="list-group-item border-0 px-3 py-2">
+            <a class="d-flex align-items-center" href="#">
+              <i class="fas fa-store me-2"></i>
+              Sellers
+            </a>
+          </li>
+
+          <li class="list-group-item border-0 px-3 py-2">
+            <a class="d-flex align-items-center" href="#">
+              <i class="fas fa-chart-line me-2"></i>
+              Analytics
+            </a>
+          </li>
+
+          <li class="list-group-item border-0 px-3 py-2 mt-4">
+            <button
+              class="btn btn-dark w-100 d-flex align-items-center justify-content-center"
+              (click)="logout()"
+            >
+              <i class="fas fa-sign-out-alt me-2"></i>
+              Logout
+            </button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

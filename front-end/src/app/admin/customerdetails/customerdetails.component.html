@@ -1,0 +1,98 @@
+<app-sidebar></app-sidebar>
+<div class="container mt-5">
+    <h1>Customers</h1>
+    <div class="d-flex justify-content-between align-items-center">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a [routerLink]="'/'" class="text-dark">Home</a></li>
+                <li class="breadcrumb-item"><a [routerLink]="'/customer'">Customers List </a></li>
+                <li class="breadcrumb-item active" aria-current="page">Customer Details</li>
+            </ol>
+
+        </nav>
+    </div>
+    <div class="customer-details-container">
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="customer-info">
+                    <img src="https://picsum.photos/200/300" alt="customer image" class="img-fluid rounded-circle">
+                    <h3 class="text-center">{{customer.name}}</h3>
+                    <p class="text-center ">{{customer.role}}</p>
+                    <hr>
+                    <div class="info-card">
+                        <div class="user-info">
+                            <div class="info-item">
+                                <i class="fas fa-envelope"></i>
+                                <p><strong>Email:</strong>{{customer.email}}</p>
+                            </div>
+
+                            <div class="info-item">
+                                <i class="fas fa-phone"></i>
+                                <p><strong>Phone Number:</strong> {{customer.phone}}</p>
+                            </div>
+
+                            <div class="info-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <p><strong>Address:</strong>{{customer.address}}</p>
+                            </div>
+
+                            <div class="info-item">
+                                <i class="fas fa-shopping-cart"></i>
+                                <p><strong>Latest Transaction:</strong>{{orders[orders.length-1].createdAt | date: 'dd/MM/yyyy'}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-8">
+                <section class="dashboard-summary">
+                    <div class="card">
+                        <i class="fas fa-wallet card-icon"></i>
+                        <p class="card-title">Total Balance</p>
+                        <h3 class="card-value">${{total}} <span class="negative">-25%</span></h3>
+                    </div>
+                    <div class="card">
+                        <i class="fas fa-shopping-cart card-icon"></i>
+                        <p class="card-title">Total Orders</p>
+                        <h3 class="card-value">{{orders.length}}<span class="positive">+10%</span></h3>
+                    </div>
+                    <div class="card">
+                        <i class="fas fa-gem card-icon"></i>
+                        <p class="card-title">Rewards Point</p>
+                        <h3 class="card-value"> {{customer.point}}<span class="positive"> +10%</span></h3>
+                    </div>
+                </section>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Customer Name</th>
+                            <th scope="col">Total Amount</th>
+                            <th scope="col">Discount</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Created</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (item of orders; track $index) {
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>{{item.user.name}}</td>
+                            <td>{{item.totalAmount}}</td>
+                            <td>{{item.discount.amount}}</td>
+                            <td>{{item.status}}</td>
+                            <td>{{item.createdAt | date : 'dd MMMM yyyy'}}</td>
+                            <td>
+                                <button class="btn btn-sm btn-primary" (click)="gotoorderDetails(item)">
+                                    <i class="fa fa-eye"></i>
+                                  </button>
+                            </td>
+                        </tr>
+                        }
+
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

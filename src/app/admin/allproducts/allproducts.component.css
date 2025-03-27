@@ -1,0 +1,84 @@
+.table th {
+  background-color: #343a40;
+  color: white;
+  font-weight: 500;
+}
+
+.table-hover tbody tr:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.pagination .page-item.active .page-link {
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+.pagination .page-link {
+  color: #000000;
+  cursor: pointer;
+}
+
+.pagination .page-link:hover {
+  color: #0056b3;
+}
+
+.badge {
+  font-size: 0.85em;
+  font-weight: 500;
+  padding: 0.35em 0.65em;
+}
+.table th {
+  background-color: #343a40;
+  color: white;
+  font-weight: 500;
+}
+
+.table-hover tbody tr:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.pagination .page-item.active .page-link {
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+.pagination .page-link {
+  color: #007bff;
+  cursor: pointer;
+}
+
+.pagination .page-link:hover {
+  color: #0056b3;
+}
+
+.badge {
+  font-size: 0.85em;
+  font-weight: 500;
+  padding: 0.35em 0.65em;
+}
+
+.btn-sm {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.875rem;
+}
+
+.btn-warning {
+  color: #212529;
+}
+
+.btn-danger {
+  color: white;
+}
+
+.actions-cell {
+  min-width: 180px;
+}
+
+.btn-primary {
+  transition: all 0.2s ease;
+}
+
+.btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}

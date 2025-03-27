@@ -1,0 +1,38 @@
+<app-sidebar></app-sidebar>
+<div class="container mt-5">
+    <h1>Customers</h1>
+    <div class="d-flex justify-content-between align-items-center">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a [routerLink]="'/'" class="text-dark">Home</a></li>
+                <li class="breadcrumb-item"><a [routerLink]="'/customer'">Customers List </a></li>
+                <li class="breadcrumb-item active" aria-current="page">update Customer</li>
+            </ol>
+
+        </nav>
+    </div>
+    <div class="update-container">
+        <h2>Update Customer Details</h2>
+        <form class="update-form">
+            <div class="form-group">
+                <label for="name"><i class="fas fa-user"></i> Full Name</label>
+                <input type="text" id="name" placeholder="Enter full name" [(ngModel)]="customer.name" name="name" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label for="email"><i class="fas fa-envelope"></i> Email</label>
+                <input type="email" id="email" placeholder="Enter email" [(ngModel)]="customer.email" name="email" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label for="phone"><i class="fas fa-phone"></i> Phone Number</label>
+                <input type="text" id="phone" placeholder="Enter phone number" [(ngModel)]="customer.phone" name="phone" class="form-control">
+            </div>
+
+            <div class="button-group">
+                <button type="submit" class="update-btn" (click)="updateCustomerDetails()">Update</button>
+                <button type="reset" class="cancel-btn">Cancel</button>
+            </div>
+        </form>
+    </div>
+</div>

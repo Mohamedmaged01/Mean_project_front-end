@@ -1,0 +1,101 @@
+a {
+    text-decoration: none;
+    color: #333;
+}
+
+a:hover {
+    color: aqua;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f8f9fa;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.update-container {
+    margin-top: 50px;
+    margin-left: 200px;
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    width: 800px;
+    text-align: center;
+}
+
+.update-container h2 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.update-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.form-group label {
+    font-size: 14px;
+    font-weight: bold;
+    color: #555;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+.button-group {
+    display: flex;
+    justify-content: space-between;
+}
+
+.update-btn {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    width: 48%;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.cancel-btn {
+    background: #dc3545;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    width: 48%;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.update-btn:hover {
+    background: #0056b3;
+}
+
+.cancel-btn:hover {
+    background: #a71d2a;
+}
+
+@media (max-width: 500px) {
+    .update-container {
+        width: 90%;
+    }
+}

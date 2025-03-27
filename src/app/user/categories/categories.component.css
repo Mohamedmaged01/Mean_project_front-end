@@ -1,0 +1,75 @@
+.category-badge {
+  width: 8px;
+  height: 20px;
+  background-color: red;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.swiper-nav-buttons {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  position: relative;
+  top: auto;
+  right: auto;
+  left: auto;
+  bottom: auto;
+  margin: 0;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: inherit;
+  border: 1px solid #ddd;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+  background-color: #f8f9fa;
+}
+
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  display: none;
+}
+
+.category-card {
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  padding: 20px 15px;
+  max-width: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: white;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.category-card:hover {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  transform: translateY(-5px);
+  border-color: #dc3545;
+}
+
+.swiper-container {
+  padding: 10px 0;
+  overflow: hidden;
+}
+
+.swiper-slide {
+  height: auto;
+}
+
+.swiper-wrapper {
+  align-items: stretch;
+}

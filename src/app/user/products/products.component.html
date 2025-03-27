@@ -1,0 +1,214 @@
+<div class="container my-5">
+  <!-- Loading Indicator -->
+  <div *ngIf="isLoading" class="text-center py-5">
+    <div class="spinner-border text-primary" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+    <p class="mt-2">Loading products...</p>
+  </div>
+
+  <div *ngIf="!isLoading">
+    <!-- Filter & Sort Section (Hidden in Category View) -->
+    <div *ngIf="showMode !== 'category'" class="filter-section mb-4 p-3 bg-light rounded">
+      <div class="d-flex justify-content-center my-4">
+        <div class="text-center">
+          <div class="row g-3 align-items-end justify-content-center">
+            <!-- Price Range Filter -->
+            <div class="col-md-4">
+              <label for="minPrice" class="form-label fw-bold">Price Range</label>
+              <div class="input-group">
+                <span class="input-group-text">$</span>
+                <input
+                  type="number"
+                  id="minPrice"
+                  class="form-control"
+                  [(ngModel)]="minPrice"
+                  placeholder="Min"
+                  min="0"
+                />
+                <span class="input-group-text">to</span>
+                <input
+                  type="number"
+                  id="maxPrice"
+                  class="form-control"
+                  [(ngModel)]="maxPrice"
+                  placeholder="Max"
+                  min="0"
+                />
+              </div>
+            </div>
+
+            <!-- Sort Options -->
+            <div class="col-md-4">
+              <label for="sortBy" class="form-label fw-bold">Sort By</label>
+              <div class="input-group">
+                <select id="sortBy" class="form-select" [(ngModel)]="sortBy">
+                  <option value="">Default</option>
+                  <option value="name">Name</option>
+                  <option value="price">Price</option>
+                  <option value="createdAt">Newest</option>
+                </select>
+                <select
+                  class="form-select"
+                  [(ngModel)]="order"
+                  style="max-width: 120px"
+                >
+                  <option value="asc">Asc</option>
+                  <option value="desc">Desc</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="col-md-4 d-flex align-items-end gap-2">
+              <button
+                class="btn btn-primary flex-grow-1"
+                (click)="applyFilters()"
+              >
+                <i class="fas fa-filter me-2"></i> Apply
+              </button>
+              <button
+                class="btn btn-outline-danger"
+                (click)="resetFilters()"
+                title="Reset all filters"
+              >
+                <i class="fas fa-undo"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Search Section -->
+    <div class="search-container mb-4">
+      <div class="position-relative">
+        <input
+          type="text"
+          class="form-control search-input"
+          [(ngModel)]="searchQuery"
+          (input)="onSearchInput()"
+          placeholder="Search by product name, category, or ID"
+          name="searchInput"
+        />
+
+        <div *ngIf="isLoading" class="search-spinner">
+          <div class="spinner-border spinner-border-sm text-primary"></div>
+        </div>
+
+        <button *ngIf="searchQuery" class="clear-btn" (click)="clearSearch()">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+
+      <!-- Suggestions Dropdown -->
+      <div
+        *ngIf="showSuggestions && suggestions.length > 0"
+        class="suggestions-dropdown"
+      >
+        <div
+          *ngFor="let item of suggestions"
+          class="suggestion-item"
+          (click)="selectSuggestion(item)"
+        >
+          <div class="suggestion-name">{{ item.name }}</div>
+          <div class="suggestion-details">
+            <span class="badge bg-secondary me-2">{{
+              item.category?.name
+            }}</span>
+            <small class="text-muted">ID: {{ item._id }}</small>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Search Results View -->
+    <div *ngIf="searchExecuted">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="searchResultsText mb-0">
+          {{ searchNotFound ? "Suggestions for" : "Results for" }} "{{
+            searchQuery
+          }}"
+        </h2>
+        <button class="btn btn-outline-secondary" (click)="clearSearch()">
+          <i class="fas fa-times me-2"></i> Clear Search
+        </button>
+      </div>
+
+      <div *ngIf="searchNotFound" class="alert alert-info mb-4">
+        <i class="fas fa-info-circle me-2"></i>
+        No exact matches found. Showing similar products.
+      </div>
+
+      <div class="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-4">
+        <div
+          class="col"
+          *ngFor="let product of allProducts; trackBy: trackByProductId"
+        >
+          <app-product-card
+            [product]="product"
+            [searchQuery]="searchQuery"
+          ></app-product-card>
+        </div>
+      </div>
+    </div>
+
+    <!-- Default Products View -->
+    <div *ngIf="!searchExecuted">
+      <!-- Single Product View -->
+      <div
+        *ngIf="showMode === 'single' && currentProduct"
+        class="row justify-content-center"
+      >
+        <div class="col-md-8 col-lg-6">
+          <app-product-card
+            [product]="currentProduct"
+            class="mb-4"
+          ></app-product-card>
+        </div>
+      </div>
+
+      <!-- Category Products View (Without Filters) -->
+      <div *ngIf="showMode === 'category'">
+        <h2 class="categoryText text-center mb-4">Products in Category</h2>
+        <div
+          *ngIf="filteredProducts.length > 0; else noCategoryProducts"
+          class="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-4"
+        >
+          <div
+            class="col"
+            *ngFor="let product of filteredProducts; trackBy: trackByProductId"
+          >
+            <app-product-card [product]="product"></app-product-card>
+          </div>
+        </div>
+        <ng-template #noCategoryProducts>
+          <div class="alert alert-info text-center">
+            No products found in this category.
+          </div>
+        </ng-template>
+      </div>
+
+      <!-- All Products View -->
+      <div *ngIf="showMode === 'all'">
+        <h2 class="allProductText text-center mb-4">All Products</h2>
+        <div
+          *ngIf="allProducts.length > 0; else noProducts"
+          class="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-4"
+        >
+          <div
+            class="col"
+            *ngFor="let product of allProducts; trackBy: trackByProductId"
+          >
+            <app-product-card [product]="product"></app-product-card>
+          </div>
+        </div>
+        <ng-template #noProducts>
+          <div class="alert alert-info text-center">
+            No products available.
+          </div>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,40 @@
+<div class="card position-relative p-3 mt-5">
+
+  <span *ngIf="product.Promocode" class="position-absolute top-0 start-0 bg-danger text-white px-2 py-1 rounded">
+    -{{ product?.Promocode }}%
+  </span>
+
+  <div class="position-absolute d-flex flex-column top-0 end-0 m-2">
+    <a routerLink="/wishlist" class="text-dark me-2 mb-2 icon-btn">
+      <i class="fa-regular fa-heart"></i>
+    </a>
+    <a [routerLink]="['/userproductsdetailes', product._id]" class="text-dark icon-btn">
+      <i class="fa-solid fa-eye"></i>
+    </a>
+  </div>
+
+  <img [src]="product.images?.[0] || 'assets/default-image.jpg'" class="card-img-top" alt="product" />
+
+  <div class="card-body text-center">
+    <h5 class="card-title" [innerHTML]="highlightText(product.name)"></h5>
+    <h6 *ngIf="product.category?.name" class="text-muted">{{ product.category.name }}</h6>
+    <h5 class="card-title">{{ product.name }}</h5>
+
+    <p class="mb-2">
+      <span class="text-danger fw-bold fs-5">${{ product.price }}</span>
+      <span *ngIf="product.originalPrice" class="text-muted text-decoration-line-through">${{ product.originalPrice }}</span>
+    </p>
+
+    <div *ngIf="product.avgRating !== undefined" class="d-flex justify-content-center align-items-center mb-1 product-rating">
+      <span class="text-warning me-1">
+        <i *ngFor="let star of [].constructor(Math.floor(product.avgRating))" class="fas fa-star"></i>
+        <i *ngIf="product.avgRating % 1 !== 0" class="far fa-star text-secondary"></i>
+      </span>
+      <span *ngIf="product.reviewCount !== undefined" class="text-muted">({{ product.reviewCount }})</span>
+    </div>
+  </div>
+
+  <div class="add-to-cart-overlay position-absolute bottom-0 start-0 w-100 text-center">
+    <button class="btn btn-dark w-100">Add To Cart</button>
+  </div>
+</div>

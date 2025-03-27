@@ -1,0 +1,202 @@
+:host {
+    display: block;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  /* Loading Styles */
+  .loading {
+    text-align: center;
+    padding: 40px;
+    color: #555;
+    font-size: 1.2rem;
+  }
+  .spinner {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid #ddd;
+    border-top: 3px solid #007bff;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-right: 10px;
+  }
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+  /* Error Styles */
+  .error-alert {
+    background-color: #f8d7da;
+    color: #721c24;
+    padding: 15px 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  .dismiss-btn {
+    background-color: #721c24;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  .dismiss-btn:hover {
+    background-color: #501518;
+  }
+  
+  /* Wishlist Container */
+  .wishlist-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+  }
+  
+  /* Card Styles */
+  .wishlist-card {
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .wishlist-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  }
+  
+  .card-header {
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+  }
+  .product-name {
+    margin: 0;
+    font-size: 1.25rem;
+    color: #333;
+    font-weight: 600;
+  }
+  
+  .card-body {
+    padding: 15px;
+    display: flex;
+    gap: 15px;
+  }
+  .product-image img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+  .product-details {
+    flex: 1;
+  }
+  .product-price {
+    margin: 0 0 5px;
+    font-size: 1.1rem;
+    color: #28a745;
+    font-weight: 700;
+  }
+  .product-description {
+    margin: 0 0 5px;
+    font-size: 0.95rem;
+    color: #555;
+  }
+  .product-category {
+    margin: 0 0 5px;
+    font-size: 0.9rem;
+    color: #777;
+  }
+  .product-availability {
+    margin: 0;
+    font-size: 0.9rem;
+  }
+  .available {
+    color: #28a745;
+  }
+  .unavailable {
+    color: #dc3545;
+  }
+  
+  .card-footer {
+    padding: 15px;
+    border-top: 1px solid #eee;
+    text-align: right;
+  }
+  .remove-btn {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  .remove-btn:hover {
+    background-color: #c82333;
+  }
+  
+  /* Empty State */
+  .empty-message {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 40px;
+    color: #666;
+  }
+  .shop-btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  .shop-btn:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Pagination Styles */
+  .pagination {
+    grid-column: 1 / -1;
+    margin-top: 30px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+  }
+  .nav-btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  .nav-btn:hover:not(:disabled) {
+    background-color: #0056b3;
+  }
+  .nav-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  .page-info, .total-info {
+    font-size: 1rem;
+    color: #333;
+  }
+  .page-size-select {
+    padding: 6px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    cursor: pointer;
+  }

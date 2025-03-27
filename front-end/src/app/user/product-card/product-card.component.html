@@ -1,0 +1,30 @@
+<div class="card position-relative">
+    <img [src]="product.images[0]" class="card-img-top" alt="product" />
+    <div class="card-body">
+        <h5 class="card-title">{{ product.name }}</h5>
+        <p>
+            <span class="text-danger fw-bold">${{ product.price }}</span>
+        </p>
+
+        <p class="d-flex align-items-center">
+            <span class="fw-bold text-warning">
+        <i
+          *ngFor="let star of [].constructor(Math.floor(product.avgRating))"
+          class="fas fa-star"
+        ></i>
+        <i
+          *ngIf="product.avgRating % 1 !== 0"
+          class="far fa-star text-secondary"
+        ></i>
+      </span>
+            <span class="text-muted ms-2">
+        {{ product.avgRating }} ({{ product.reviewCount }} reviews)
+      </span>
+        </p>
+
+        <button class="btn btn-dark w-100 mb-2">Add to Cart</button>
+        <button class="btn btn-dark w-100" [routerLink]="['/userproducts', product._id]">
+      Product Details
+    </button>
+    </div>
+</div>
