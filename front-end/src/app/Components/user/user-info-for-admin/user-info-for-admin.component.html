@@ -1,0 +1,116 @@
+
+<div class="admin-container">
+    <h1 class="dashboard-title">Admin Dashboard</h1>
+  
+    @if (loading) {
+      <div class="loading">Loading users...</div>
+    } @else if (error) {
+      <div class="alert alert-danger">{{ error }}</div>
+    } @else {
+      <div class="dashboard-grid">
+      
+        <div class="users-section card">
+          <h2 class="section-title">Users</h2>
+          <div class="users-list">
+            @for (user of users; track user._id) {
+              <div class="user-card" 
+                   [class.active]="selectedUser?._id === user._id"
+                   (click)="showUserOrders(user)">
+                <div class="user-info">
+                  @if (editingUser?._id === user._id) {
+                  
+                    <div class="edit-form">
+                      <input type="text" [(ngModel)]="editingUser.name" placeholder="Name" />
+                      <input type="email" [(ngModel)]="editingUser.email" placeholder="Email" />
+                      <div class="edit-actions">
+                        <button class="btn btn-save" (click)="saveUser()">Save</button>
+                        <button class="btn btn-cancel" (click)="cancelEdit()">Cancel</button>
+                      </div>
+                    </div>
+                  } @else {
+                 
+                    <h3>{{ user.name || 'Unnamed User' }}</h3>
+                    <p>{{ user.email }}</p>
+                    <div class="status-update">
+                      <span class="user-status" 
+                            [ngClass]="{
+                              'pending': user.status === 'pending' || !user.status,
+                              'accepted': user.status === 'accepted',
+                              'rejected': user.status === 'rejected'
+                            }">
+                        {{ user.status || 'pending' }}
+                      </span>
+                      <select [(ngModel)]="user.status" 
+                              (ngModelChange)="updateUserStatus(user, $event)"
+                              [disabled]="editingUser?._id === user._id">
+                        <option value="pending" disabled>pending</option>
+                        <option value="accepted">accepted</option>
+                        <option value="rejected">rejected</option>
+                      </select>
+                      <button class="btn btn-edit" (click)="editUser(user)">Edit</button>
+                    </div>
+                  
+                  }
+                </div>
+              </div>
+            } @empty {
+              <p>No users found.</p>
+            }
+          </div>
+        </div>
+  
+     
+        <div class="orders-section card">
+          <h2 class="section-title">
+            @if (selectedUser) {
+              Orders for {{ selectedUser.name || 'Selected User' }}
+            } @else {
+              Select a User to View Orders
+            }
+          </h2>
+          @if (selectedUser) {
+            <div class="orders-list">
+              @for (order of orders; track order._id) {
+                <div class="order-card">
+                  <div class="order-details">
+                    <p><strong>Order ID:</strong> {{ order._id }}</p>
+                    <p><strong>Date:</strong> {{ order.createdAt | date:'medium' }}</p>
+                    <p><strong>Total:</strong> ${{ order.totalAmount || 0 }}</p>
+                    <p><strong>Status:</strong> 
+                      <span class="order-status" 
+                            [ngClass]="order.status === 'delivered' ? 'completed' : 'pending'">
+                        {{ order.status }}
+                      </span>
+                    </p>
+               
+                    <div class="order-items">
+                      <h4>Items:</h4>
+                      @for (item of order.items; track item._id) {
+                        <div class="order-item">
+                          <img [src]="item.image || 'https://via.placeholder.com/50'" 
+                               alt="Product Image" 
+                               class="product-image" 
+                               (error)="item.image = 'https://via.placeholder.com/50'" />
+                          <div class="item-details">
+                            <p><strong>Product:</strong> {{ item.name }}</p>
+                            <p><strong>Quantity:</strong> {{ item.quantity }}</p>
+                            <p><strong>Price:</strong> ${{ item.price }}</p>
+                            <p><strong>Subtotal:</strong> ${{ item.subtotal }}</p>
+                          </div>
+                        </div>
+                      }
+                    </div>
+                  </div>
+                </div>
+              } @empty {
+                <p>No orders found for this user.</p>
+              }
+              <div class="total-summary">
+                <strong>Total Amount:</strong> ${{ getTotalOrders(orders) }}
+              </div>
+            </div>
+          }
+        </div>
+      </div>
+    }
+  </div>

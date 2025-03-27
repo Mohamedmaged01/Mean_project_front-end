@@ -4,9 +4,10 @@ import {LoginComponent} from './Components/user/login/login.component';
 import {SignupComponent} from './Components/user/signup/signup.component';
 import{ListWishlistComponent} from './Components/user/list-wishlist/list-wishlist.component';
 import{CartComponent} from './Components/user/cart/cart.component';
+import {UserInfoForAdminComponent}from './Components/user/user-info-for-admin/user-info-for-admin.component';
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet,LoginComponent,SignupComponent,ListWishlistComponent,CartComponent],
+  imports: [RouterOutlet,LoginComponent,SignupComponent,ListWishlistComponent,CartComponent,UserInfoForAdminComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
