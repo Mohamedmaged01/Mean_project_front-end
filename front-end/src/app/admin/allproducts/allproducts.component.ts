@@ -171,7 +171,7 @@ export class AllProductsComponent implements OnInit {
   }
 
   navigateToAddProduct(): void {
-    this.router.navigate(['/add-product']);
+    this.router.navigate(['adminproducts/add']);
   }
 
   editProduct(productId: number): void {

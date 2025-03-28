@@ -36,32 +36,20 @@ export class PaymentComponent implements OnInit {
     event.preventDefault();
     this.loading = true;
     this.message = "";
-
+    const paymentMessage = document.getElementById("paymentMessage") as HTMLElement;
+    paymentMessage.textContent = "Processing payment...";
     const { paymentMethod, error } = await this.stripe.createPaymentMethod({
       type: "card",
       card: this.cardElement,
     });
 
     if (error) {
-      this.message = error.message || "Payment failed!";
-      this.loading = false;
-      return;
-    }
+      paymentMessage.textContent = "Error: " + error.message;
+  } else {
+      console.log("Transaction ID:", paymentMethod.id);
+      paymentMessage.textContent = `✅ Payment Successful! Transaction ID: ${paymentMethod.id}`;
+  }
 
-    this.paymentService.placeOrder(paymentMethod.id).subscribe(
-      (response) => {
-        if (response.success) {
-          const modal = new bootstrap.Modal(document.getElementById("successModal"));
-          modal.show();
-        } else {
-          this.message = response.message;
-        }
-        this.loading = false;
-      },
-      (error) => {
-        this.message = "Payment failed! Please try again.";
-        this.loading = false;
-      }
-    );
+    
   }
 }

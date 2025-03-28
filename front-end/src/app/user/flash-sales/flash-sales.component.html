@@ -1,20 +1,43 @@
 <div class="container my-4">
-    <h3 class="text-danger">Today's Flash Sales</h3>
-    <app-timer></app-timer>
+  <div class="d-flex align-items-center mb-3">
+    <span class="today"></span>
+    <h6 class="text-danger fw-bold ms-2 mb-0">Today's</h6>
+  </div>
 
-    <div class="row mt-4" *ngIf="products.length > 0; else noProducts">
-        <div class="col-md-3" *ngFor="let product of products">
-            <app-product-card [product]="product"></app-product-card>
+  <div class="d-flex align-items-center mb-2">
+    <div class="d-flex justify-content-center align-items-center">
+      <h3 class="text-danger mb-0 me-5">Flash Sales</h3>
+      <app-timer></app-timer>
+    </div>
+
+    <div class="ms-auto d-flex">
+      <button class="swiper-button-prev btn btn-light me-1">
+        <i class="fas fa-chevron-left"></i>
+      </button>
+      <button class="swiper-button-next btn btn-light">
+        <i class="fas fa-chevron-right"></i>
+      </button>
+    </div>
+  </div>
+
+  <div class="swiper-container flash-sales-slider mt-2">
+    <div #flashSalesSlider class="swiper">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide" *ngFor="let product of products">
+          <app-product-card [product]="product"></app-product-card>
         </div>
+      </div>
     </div>
+  </div>
 
-    <div class="d-flex justify-content-center mt-3">
-        <button class="btn btn-danger" routerLink="/userproducts">
-      View All Products
-    </button>
-    </div>
+  <div class="text-center mt-3">
+    <button class="btn btn-danger" routerLink="/userproducts">View All Products</button>
+  </div>
+</div>
 
-    <ng-template #noProducts>
-        <p class="text-center text-muted">No products available at the moment.</p>
-    </ng-template>
+<div *ngIf="products.length === 0" class="text-center py-5">
+  <div class="spinner-border text-primary" role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+  <p class="mt-2">Loading products...</p>
 </div>

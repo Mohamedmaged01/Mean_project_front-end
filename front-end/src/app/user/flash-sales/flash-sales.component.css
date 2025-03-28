@@ -1,26 +1,44 @@
-ngx-slick-carousel {
-  display: block;
-  width: 100%;
+.swiper-nav-buttons {
+  display: flex;
+  gap: 0.5rem;
 }
 
-.product-card {
-  padding: 10px;
-}
-
-.slick-prev, .slick-next {
-  background-color: red;
-  color: white;
-  border: none;
-  border-radius: 50%;
+.swiper-button-next,
+.swiper-button-prev {
+  position: relative;
+  top: auto;
+  right: auto;
+  left: auto;
+  bottom: auto;
+  margin: 0;
   width: 40px;
   height: 40px;
-  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: inherit;
+  border: 1px solid #ddd;
+  border-radius: 50%;
+  transition: all 0.3s ease;
 }
 
-.slick-prev {
-  left: -45px;
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+  background-color: #f8f9fa;
 }
 
-.slick-next {
-  right: -45px;
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  display: none;
 }
+
+
+.today {
+  width: 8px;
+  height: 20px;
+  background-color: red;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+

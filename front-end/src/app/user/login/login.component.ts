@@ -81,7 +81,12 @@ export class LoginComponent implements OnInit {
 
         if (response.token) {
           localStorage.setItem('token', response.token);
-          localStorage.setItem('userRole', response.role); // Store user role
+          localStorage.setItem('userRole', response.role);
+        }
+        if (loginData.email === 'mostafamokna78@gmail.com') {
+          this.router.navigate(['/admin']);
+        } else {
+          this.router.navigate(['/home']);
         }
 
         const redirectRoute = response.role === 'admin' ? 'adminHome' : 'home';

@@ -27,12 +27,11 @@ import { DeleteproductComponent } from './admin/deleteproduct/deleteproduct.comp
 import { UpdateproductComponent } from './admin/updateproduct/updateproduct.component';
 import { ProductComponent } from './admin/product/product.component';
 import { AdminHomeComponent } from './admin/admin-home/admin-home.component';
-import { AuthGuard } from './gaurds/auth.guard';
 import { UserorderComponent } from './user/userorder/userorder.component';
-import { PaymentComponent } from './user/payment/payment.component';
+
 export const routes: Routes = [
   { path: 'signup', component: SignupComponent },
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'home', component: HomeComponent },
   { path: 'callback', component: CallbackComponent },
@@ -62,11 +61,16 @@ export const routes: Routes = [
     component: CartComponent,
     title: 'Cart',
   },
+
+  {
+    path: 'admin',
+    component: AdminHomeComponent,
+    title: 'Home page',
+  },
   {
     path: 'adminHome',
     component: AdminHomeComponent,
     title: 'admin Home page',
-    canActivate: [AuthGuard],
   },
   {
     path: 'category',
@@ -84,6 +88,16 @@ export const routes: Routes = [
     title: 'Category Details',
   },
   {
+    path: 'category/:categoryName',
+    component: ProductListComponent,
+    title: 'Category Products'
+  },
+  {
+    path: 'userproducts/:categoryId',
+    component: ProductListComponent,
+    title: 'Category Products'
+  },
+  {
     path: 'customer',
     component: CustomerComponent,
     title: 'Customer',
@@ -99,8 +113,8 @@ export const routes: Routes = [
     title: 'Update Customer',
   },
   {
-    path: 'userorder',
-    component: UserorderComponent,
+    path: 'order',
+    component: OrderComponent,
     title: 'Order',
   },
   { path: 'adminproducts', component: ProductComponent },
@@ -116,11 +130,11 @@ export const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'flash-sales', component: FlashSalesComponent },
   { path: 'userproducts', component: ProductListComponent },
-  { path: 'userproducts/:id', component: ProductDetailsComponent },
+  { path: 'userproductsdetailes/:id', component: ProductDetailsComponent },
   {
-    path:'payment',
-    component:PaymentComponent,
-    title:'Payment'
+    path:'userorder',
+    component:UserorderComponent,
+    title:'User Order'
   }
 ];
 
